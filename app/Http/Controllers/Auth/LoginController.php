@@ -65,12 +65,6 @@ class LoginController extends Controller
 						if(Auth::user()->role_id === 1){
 							$redirect = '/admin/dashboard';
 							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
-						}else if(Auth::user()->role_id === 3){
-							$redirect = '/trainer/dashboard';
-							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
-						}else{
-							$redirect = '/user';
-							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
 						}
 					}else{
 						return response()->json(array('status' => 0,'message'=>'Your account is not verified. Please verify your account'));

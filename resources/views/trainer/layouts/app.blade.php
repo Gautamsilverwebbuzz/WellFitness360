@@ -152,6 +152,6 @@
 	<!-- Custom Theme Scripts -->
 	<script src="{{ asset('backend/js/multi-select.min.js') }}"></script>
 	<script src="{{ asset('backend/build/js/custom.min.js') }}"></script>
-	<script src="{{ asset('backend/js/backendScript.js') }}"></script>
+	<script src="{{ asset('trainer/js/trainerScript.js') }}"></script>
   </body>
 </html>

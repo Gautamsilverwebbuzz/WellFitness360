@@ -1,12 +1,12 @@
-@extends('backend.layouts.app')
+@extends('trainer.layouts.app')
 
 @section('content')
 
 <div class="main_container">
-		@include('backend.templates.sidebar')
+		@include('trainer.templates.sidebar')
 
 		<!-- top navigation -->
-		@include('backend.templates.header')
+		@include('trainer.templates.header')
 		<!-- /top navigation -->
 
 		<!-- page content -->
@@ -467,7 +467,7 @@
 			</div>
 		</div>
 		<!-- footer content -->
-		@include('backend.templates.footer')
+		@include('trainer.templates.footer')
 		<!-- /footer content -->
 	</div>
 

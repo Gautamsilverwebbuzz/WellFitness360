@@ -38,8 +38,8 @@
             </a>
             <ul class="dropdown-menu dropdown-usermenu pull-right">
               <!-- <li><a href="javascript:void(0);"><i class="fa fa-user pull-right"></i>Profile</a></li> -->
-              <li><a href="{{ route('/admin/changePassword') }}"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
-              <li><a href="{{ url('/admin/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+              <li><a href="{{ route('/trainer/changePassword') }}"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
+              <li><a href="{{ url('/trainer/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
             </ul>
           </li>
         </ul>

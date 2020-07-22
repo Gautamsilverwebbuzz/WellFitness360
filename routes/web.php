@@ -49,12 +49,12 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 // If redirect admin
-Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend','namespace' => 'Trainer'], function () {
+Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function () {
 	Route::get('/admin', 'DashboardController@index')->name('admin');
 	// Route::get('/user', 'DashboardController@index')->name('user');
 	// Route::get('/trainer', 'DashboardController@index')->name('trainer');
 	Route::get('/admin/dashboard', 'DashboardController@index')->name('/admin/dashboard');
-	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
+	
 
 	
 	Route::get('/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('user-trainer-activity');
@@ -122,7 +122,22 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend','namespace'
 
 });
 
-/* Front End Route START*/
+
+/*Trainer Route START*/
+Route::get('/trainer/logout', 'Trainer\LoginController@logout')->name('/trainer/logout');
+Route::match(['GET', 'POST'], 'trainer/login', 'Trainer\LoginController@index');
+Route::match(['GET', 'POST'], 'trainer/login-check', 'Trainer\LoginController@loginCheck')->name('trainer/login-check');
+Route::match(['GET', 'POST'], 'trainer/check-email', 'Trainer\LoginController@checkEmail')->name('trainer/check-email');
+Route::match(['GET', 'POST'], '/trainer/forgetPassword', 'Trainer\ForgotPasswordController@forgetPassword')->name('/trainer/forgetPassword');
+Route::match(['GET', 'POST'], '/trainer/resetPassword', 'Trainer\ForgotPasswordController@resetPassword')->name('/trainer/resetPassword');
+Route::group(['middleware' => 'trainerlogin','namespace' => 'Trainer'], function () {
+	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
+	Route::match(['GET', 'POST'], '/trainer/changePassword', 'LoginController@changePassword')->name('/trainer/changePassword');
+});
+/*Trainer Route END*/
+
+
+/* Front Route START*/
 Route::get('blog', 'Frontend\HomeController@blog')->name('blog');
 Route::get('blog-details/{id}', 'Frontend\HomeController@blogDetails');
 
@@ -133,4 +148,4 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend'], function () {
 	Route::match(['GET', 'POST'], '/login-check', 'LoginController@loginCheck')->name('/login-check');
 });
 
-/* Front End Route END*/
+/* Front Route END*/
