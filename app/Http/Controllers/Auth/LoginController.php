@@ -66,7 +66,7 @@ class LoginController extends Controller
 							$redirect = '/admin/dashboard';
 							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
 						}else if(Auth::user()->role_id === 3){
-							$redirect = '/trainer';
+							$redirect = '/trainer/dashboard';
 							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
 						}else{
 							$redirect = '/user';

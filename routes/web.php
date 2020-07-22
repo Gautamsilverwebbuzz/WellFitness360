@@ -49,11 +49,14 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 // If redirect admin
-Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function () {
+Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend','namespace' => 'Trainer'], function () {
 	Route::get('/admin', 'DashboardController@index')->name('admin');
 	// Route::get('/user', 'DashboardController@index')->name('user');
 	// Route::get('/trainer', 'DashboardController@index')->name('trainer');
 	Route::get('/admin/dashboard', 'DashboardController@index')->name('/admin/dashboard');
+	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
+
+	
 	Route::get('/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('user-trainer-activity');
 	Route::post('/save-user-trainer-activity', 'DashboardController@saveUserandTrainerActivity')->name('save-user-trainer-activity');
 
