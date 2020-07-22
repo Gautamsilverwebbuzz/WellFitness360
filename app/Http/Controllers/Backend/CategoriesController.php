@@ -69,7 +69,7 @@ class CategoriesController extends Controller
 		$insertCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $insertCategories->save();
 		if($result){
-			return redirect('categoriesManagement')->with('success_msg', 'Categories Insert successfully.');
+			return redirect('admin/categoriesManagement')->with('success_msg', 'Categories Insert successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -139,7 +139,7 @@ class CategoriesController extends Controller
 		$updateCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $updateCategories->save();
 		if($result){
-			return redirect('categoriesManagement')->with('success_msg', 'Categories Update successfully.');
+			return redirect('admin/categoriesManagement')->with('success_msg', 'Categories Update successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}

@@ -75,7 +75,7 @@ class TrainerController extends Controller
 		$result = $this->User->save();  // save data
 
 		if($result){
-			return redirect('trainerManagement')->with('success_msg', 'Trainer added successfully.');
+			return redirect('admin/trainerManagement')->with('success_msg', 'Trainer added successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -139,7 +139,7 @@ class TrainerController extends Controller
 		$result = $updatetrainer->save();  // Update data
 
 		if($result){
-			return redirect('trainerManagement')->with('success_msg', 'Trainer Update successfully.');
+			return redirect('admin/trainerManagement')->with('success_msg', 'Trainer Update successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -170,7 +170,7 @@ class TrainerController extends Controller
 		$updatetrainer->tranier_approved = "1";
 		$result = $updatetrainer->save(); 
 		if($result){
-			return redirect('trainerManagement')->with('success_msg', 'Trainer Approved successfully.');
+			return redirect('admin/trainerManagement')->with('success_msg', 'Trainer Approved successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}

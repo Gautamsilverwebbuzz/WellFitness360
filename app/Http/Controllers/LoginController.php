@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Trainer;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\View;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Role;
+use App\Helpers\Helper;
 
 class LoginController extends Controller
 {
 	public function index(){
-		return view("Trainer.login");
+		return view("login");
 	}
 
 	public function loginCheck(Request $request){
@@ -33,7 +34,9 @@ class LoginController extends Controller
 							return response()->json(array('status' => 0,'message'=>'You have not apporved.'));
 						}
 					}else{
-						return response()->json(array('status' => 0,'message'=>'Invalid login credential...'));
+						Session::put('user', ['role_id' => $findUser->role_id, 'user_id' => $findUser->id, 'email' => $findUser->email,'name' => $findUser->name,'surname' => $findUser->sur_name]);
+						$redirect = '/user';
+					return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
 					}
 				}else{
 					return response()->json(array('status' => 0,'message'=>'Please verify your email.'));	
@@ -56,8 +59,10 @@ class LoginController extends Controller
 		}
 	}
 
+	
+
 	public function logout(){
 		Session::flush();
-		return Redirect('trainer/login');
+		return Redirect('/login');
 	}
 }

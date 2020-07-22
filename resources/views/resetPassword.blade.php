@@ -10,29 +10,25 @@
 		<div class="row">
 			<div class="text-center start-form">
 				<h2>Start Now!</h2>
-				<p class="p1">Unleash your Power</p>
-				<form class="needs-validation" name="login-Form" id="login-Form" method="post">
+				<p class="p1">Reset Password</p>
+				<form class="needs-validation" name="resetPassword" id="resetPassword" method="post">
 					<input type="hidden" name="_token"  id="csrf-token" value="{{ csrf_token() }}">
+					 <input type="hidden" name="rememberToken"  id="rememberToken" value="{{ $token }}">
 					<div class="form-group">
-						<input type="text" class="form-control" id="email" placeholder="Email" name="email">
-						<!-- <div class="invalid-feedback">Please fill out this field.</div -->
+						<input type="password" name="password" id="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" placeholder="Enter New Password" required="" />
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" id="password" placeholder="Password" name="password">
-						<!-- <div class="invalid-feedback">Please fill out this field.</div> -->
+						<input type="password" name="confirm_password" id="confirm_password" value="{{ old('confirm_password') }}" class="form-control @error('') is-invalid @enderror" placeholder="Enter Confirm Password" required="" />
 					</div>
 					<input type="submit" class="blue-btnwithout-redius btn" id="submit" name="submit" value="Start The Workout">
-					<!-- <a href="javascript:void(0);" class="blue-btnwithout-redius btn">Start The Workout</a> -->
 				</form>
-				<p class="p1">Don't have an account?<a href="javascript:void(0);"> Sign Up</a></p>
+				<a href="url('login')"> Sign In</a>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- End of the start now section -->
-
 <!-- Footer -->
 @include('Frontend.layouts.footer')
 <!-- /Footer -->
-
 @endsection

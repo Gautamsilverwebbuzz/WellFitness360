@@ -36,7 +36,7 @@
                 </div>
                 <div class="x_content">
                   <br />
-                  <form id="contactUsForm" action="{{ route('cms_contactus') }}" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                  <form id="contactUsForm" action="{{ route('admin/cms_contactus') }}" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
                     <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('backend/list.forms.email')<span class="required">*</span>

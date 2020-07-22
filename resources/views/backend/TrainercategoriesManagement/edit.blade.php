@@ -19,7 +19,7 @@
 					</div>
 					<div class="x_content">
 						<br />
-						<form id="categoryForm" action="{{ url('trainercategoriesManagement/update/'.$RowData['trainer_cat_id']) }}" method="POST" class="form-horizontal form-label-left">
+						<form id="categoryForm" action="{{ url('admin/trainercategoriesManagement/update/'.$RowData['trainer_cat_id']) }}" method="POST" class="form-horizontal form-label-left">
 							<input type="hidden" name="_token" value="{{ csrf_token() }} ">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Select Parent Categories</label>

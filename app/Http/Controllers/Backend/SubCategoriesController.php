@@ -97,7 +97,7 @@ class SubCategoriesController extends Controller
 		$insertSubCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $insertSubCategories->save();
 		if($result){
-			return redirect('subcategoriesManagement')->with('success_msg', 'Sub Categories Insert successfully.');
+			return redirect('admin/subcategoriesManagement')->with('success_msg', 'Sub Categories Insert successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -196,7 +196,7 @@ class SubCategoriesController extends Controller
 		$updateSubCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $updateSubCategories->save();
 		if($result){
-			return redirect('subcategoriesManagement')->with('success_msg', 'Sub Categories update successfully.');
+			return redirect('admin/subcategoriesManagement')->with('success_msg', 'Sub Categories update successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}

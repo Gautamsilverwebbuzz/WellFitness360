@@ -1,4 +1,17 @@
 $(document).ready(function() {
+
+	/*Profile Page*/
+	if($("#biography").length){
+		CKEDITOR.replace( 'biography' );
+	}
+	if($("#goals").length){
+		CKEDITOR.replace( 'goals' );
+	}
+	if($("#experience").length){
+		CKEDITOR.replace( 'experience' );
+	}
+	/*Profile Page*/
+
 	$( "#trainerlogin" ).validate({
 		rules: {
 			email: {
@@ -48,33 +61,53 @@ $(document).ready(function() {
 		}
 	});
 
-	$( "#trainerforgotePassword" ).validate({
+	
+
+	$('#trainerchangePassword').validate({
 		rules: {
-			email: {
-				required: true,
-				email: true,
-			}
+			old_password:{
+				required:true,
+				minlength:6,
+			},
+			new_password:{
+				required:true,
+				minlength:6,
+			},
+			confirm_password:{
+				required:true,
+				minlength:6,
+				equalTo: "#new_password",
+			},
 		},
 		messages: {
-			email: {
-				required: 'Please enter email',
-				email: 'Please enter valid email',
+			old_password:{
+				required:'Please enter old password',
+				minlength: 'Required minimum 6 character | digits | special character',
+			},
+			new_password:{
+				required:'Please enter new password',
+				minlength: 'Required minimum 6 character | digits | special character',
+			},
+			confirm_password:{
+				required:'Please enter confirm password',
+				minlength: 'Required minimum 6 character | digits | special character',
+				equalTo: "New password & confirm password does not match",
 			}
 		},
 		submitHandler: function (form) {
-			$(".forgotr-btn").attr("disabled", true);
+			$("#cover-spin").css("display", "block");
 			$("#overlay").fadeIn(300);
 			$.ajax({
-				url  : BASE_URL+'/trainer/forgetPassword',
+				url  : BASE_URL+'/trainer/changePassword',
 				type : 'POST',
-				data : $('#trainerforgotePassword').serialize(),
+				data : $('#trainerchangePassword').serialize(),
 				success : function(response) {
+					$("#cover-spin").css("display", "none");
 					$("#overlay").fadeOut(300);
-					$(".forgotr-btn").attr("disabled", false);
 					var data = JSON.parse(JSON.stringify(response));
 					if(data.status){
 						toastr.success(data.message);
-
+						window.location = BASE_URL + data.redirecturl;
 					}else{
 						toastr.error(data.message);
 					}
@@ -83,46 +116,110 @@ $(document).ready(function() {
 		}
 	});
 
-	/**
-	 * USE : Validate update password
-	 */
-	$( "#trainerresetPassword" ).validate({
+	$('#trainerprofile').validate({
+		ignore: "input:hidden:not(input:hidden.required)",
 		rules: {
-			password:{
+			name:{
 				required:true,
-				minlength:6,
 			},
-			confirm_password:{
+			surname:{
 				required:true,
-				minlength:6,
-				equalTo: "#password",
-			}
+			},
+			contact_no:{
+				required:true,
+				number:true
+			},
+			gender:{
+				required:true,
+			},
+			age:{
+				required:true,
+			},
+			height:{
+				required:true,
+			},
+			weight:{
+				required:true,
+			},
+			level:{
+				required:true,
+			},
+			biography:{
+				required:true,
+			},
+			goals:{
+				required:true,
+			},
+			experience:{
+				required:true,
+			},
 		},
 		messages: {
-			password:{
-				required: 'Please enter password',
-				minlength: 'Please enter atleast 6 digits',
+			name:{
+				required: 'Please enter name.',
 			},
-			confirm_password:{
-				required: 'Please enter confirm password',
-				minlength: 'Please enter atleast 6 digits',
-				equalTo: "Password and confirm password does not match",
+			surname:{
+				required: 'Please enter Sur name.'
+			},
+			contact_no:{
+				required: 'Please enter contact number.',
+				number:'Please enter valid contact number'
+			},
+			gender:{
+				required: 'Please select gender.'
+			},
+			age:{
+				required: 'Please select age.'
+			},
+			age:{
+				required: 'Please select age.'
+			},
+			height:{
+				required: 'Please select height.'
+			},
+			weight:{
+				required: 'Please select weight.'
+			},
+			level:{
+				required: 'Please select level.'
+			},
+			biography:{
+				required:"Please enter biography.",
+			},
+			goals:{
+				required:"Please enter goals.",
+			},
+			experience:{
+				required:"Please enter experience.",
+			},
+		},
+		errorPlacement: function (error, element) {
+			if(element.attr("name") == "gender") {
+				error.appendTo('.Gendererror');
+			}else if (element.attr("name") == "biography" ){
+				error.insertAfter(".biographyerror");
+			}
+			else if (element.attr("name") == "goals" ){
+				error.insertAfter(".goalserror");
+			}else if (element.attr("name") == "experience" ){
+				error.insertAfter(".experienceerror");
+			}else {
+				error.insertAfter(element);
 			}
 		},
 		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
 			$("#overlay").fadeIn(300);
-			$(".reset-pwd-btn").attr("disabled", true);
 			$.ajax({
-				url  : BASE_URL+'/admin/resetPassword',
+				url  : BASE_URL+'/trainer/profile',
 				type : 'POST',
-				data : $('#resetPassword').serialize(),
+				data : $('#trainerprofile').serialize(),
 				success : function(response) {
-					$(".reset-pwd-btn").attr("disabled", false);
+					$("#cover-spin").css("display", "none");
 					$("#overlay").fadeOut(300);
 					var data = JSON.parse(JSON.stringify(response));
 					if(data.status){
 						toastr.success(data.message);
-						window.location = BASE_URL + data.redirecturl;
 					}else{
 						toastr.error(data.message);
 					}

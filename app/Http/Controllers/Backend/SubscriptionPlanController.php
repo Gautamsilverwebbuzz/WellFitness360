@@ -65,7 +65,7 @@ class SubscriptionPlanController extends Controller
         $this->SubscriptionPlan->status     = $request->status;
         $Save = $this->SubscriptionPlan->save();  // save data
         if($Save){
-            return redirect('SubscriptionPlanManagement')->with('success_msg', 'Subscription Plan added successfully.');
+            return redirect('admin/SubscriptionPlanManagement')->with('success_msg', 'Subscription Plan added successfully.');
         }else{
             return back()->with('error_msg', 'Problem was error accured.. Please try again..');
         }
@@ -128,7 +128,7 @@ class SubscriptionPlanController extends Controller
         $Plan->status       = $request->status;
         $Update = $Plan->save();  // save data
         if($Update){
-            return redirect('SubscriptionPlanManagement')->with('success_msg', 'Subscription Plan Updated successfully.');
+            return redirect('admin/SubscriptionPlanManagement')->with('success_msg', 'Subscription Plan Updated successfully.');
         }else{
             return back()->with('error_msg', 'Problem was error accured.. Please try again..');
         }

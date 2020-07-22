@@ -71,7 +71,7 @@ class EventController extends Controller
 			});
 		}
 		if($result){
-			return redirect('eventManagement')->with('success_msg', 'Event added successfully and send mail selected trainer.');
+			return redirect('admin/eventManagement')->with('success_msg', 'Event added successfully and send mail selected trainer.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -138,7 +138,7 @@ class EventController extends Controller
 			});
 		}
 		if($result){
-			return redirect('eventManagement')->with('success_msg', 'Event updated successfully.');
+			return redirect('admin/eventManagement')->with('success_msg', 'Event updated successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}

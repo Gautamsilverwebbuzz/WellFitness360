@@ -63,7 +63,7 @@ class TrainerCategoriesController extends Controller
 		$this->Categories->status          = $request->status;
 		$saveCategories= $this->Categories->save();  // save data
 		if($saveCategories){
-			return redirect('trainercategoriesManagement')->with('success_msg', 'Trainer categories added successfully.');
+			return redirect('admin/trainercategoriesManagement')->with('success_msg', 'Trainer categories added successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -125,7 +125,7 @@ class TrainerCategoriesController extends Controller
 					]
 				);
 		if($update){
-			return redirect('trainercategoriesManagement')->with('success_msg', 'Trainer Categories Update successfully.');
+			return redirect('admin/trainercategoriesManagement')->with('success_msg', 'Trainer Categories Update successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -142,12 +142,12 @@ class TrainerCategoriesController extends Controller
 		if(!$checkcategory){
 			$delete = TrainerCategories::where('trainer_cat_id',$id)->delete();
 			if($delete){
-				return redirect('trainercategoriesManagement')->with('success_msg', 'Trainer Categories Delete Successfully');
+				return redirect('admin/trainercategoriesManagement')->with('success_msg', 'Trainer Categories Delete Successfully');
 			}else{
-				return redirect('trainercategoriesManagement')->with('error_msg', 'Something wrong Please try again.');
+				return redirect('admin/trainercategoriesManagement')->with('error_msg', 'Something wrong Please try again.');
 			}
 		}else{
-			return redirect('trainercategoriesManagement')->with('error_msg', 'This is a Parent Categories do not Direct Delete. Please delete first Child Categories..');
+			return redirect('admin/trainercategoriesManagement')->with('error_msg', 'This is a Parent Categories do not Direct Delete. Please delete first Child Categories..');
 		}
 	}
 }

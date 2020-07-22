@@ -17,9 +17,9 @@ class Login
 	 */
 	public function handle($request, Closure $next, $guard = null)
 	{
-		$login = Session::get('user')['user_id'];
-		if(!$login){
-			//return redirect('login');
+		$login = Session::get('user')['role_id'];
+		if($login == "1" || !$login){
+			return redirect('login');
 		}
 		return $next($request);
 	}

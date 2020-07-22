@@ -56,7 +56,7 @@ class BlogController extends Controller
 		$blog_insert->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $blog_insert->save();
 		if($result){
-			return redirect('blogManagement')->with('success_msg', 'Blog Insert successfully.');
+			return redirect('admin/blogManagement')->with('success_msg', 'Blog Insert successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -113,7 +113,7 @@ class BlogController extends Controller
 		$blog_update->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $blog_update->save();
 		if($result){
-			return redirect('blogManagement')->with('success_msg', 'Blog Update successfully.');
+			return redirect('admin/blogManagement')->with('success_msg', 'Blog Update successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}

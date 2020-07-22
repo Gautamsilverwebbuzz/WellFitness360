@@ -42,7 +42,7 @@ class EshopController extends Controller
     {
         $rules = [
             'Name' => 'required',
-            'Image' => 'required|image|mimes:jpeg,png,jpg',
+            'Image' => 'required',
             'Shop_URL' => 'required',
         ];
 
@@ -75,7 +75,7 @@ class EshopController extends Controller
         ]);
 
         if($save){
-            return redirect('E_shopManagement')->with('success_msg', 'E-Shop Added successfully!');
+            return redirect('admin/E_shopManagement')->with('success_msg', 'E-Shop Added successfully!');
         }else{
             return redirect()->back()->withInput();
         }
@@ -148,7 +148,7 @@ class EshopController extends Controller
         $shopData->Status       = isset($request->Status) ? 1 : 0;
         $update                 = $shopData->save();
         if($update){
-            return redirect('E_shopManagement')->with('success_msg', 'E-Shop detail updated successfully!');
+            return redirect('admin/E_shopManagement')->with('success_msg', 'E-Shop detail updated successfully!');
         }else{
             return redirect()->back()->withInput();
         }

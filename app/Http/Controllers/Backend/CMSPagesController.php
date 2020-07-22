@@ -23,7 +23,7 @@ class CMSPagesController extends Controller
             $about_us = About_Us::find(1);
             return view('backend.cmsPages.about_us',compact('about_us'));
         }
-
+        
         if($request->isMethod('post')) {
             $public_path = 'backend/images/CMSPages';
             $fullImagePath = null;
@@ -63,9 +63,9 @@ class CMSPagesController extends Controller
                 }
             }
             if($result){
-                return redirect('cms_aboutus')->with('success_msg', 'Detail updated successfully!');
+                return redirect('admin/cms_aboutus')->with('success_msg', 'Detail updated successfully!');
             }else{
-                return redirect('cms_aboutus')->with('error_msg', 'Problem was occured.. Please try again!!!!');
+                return redirect('admin/cms_aboutus')->with('error_msg', 'Problem was occured.. Please try again!!!!');
             }
         }
     }
@@ -102,9 +102,9 @@ class CMSPagesController extends Controller
             }
 
             if($result){
-                return redirect('cms_contactus')->with('success_msg', 'Detail updated successfully!');
+                return redirect('admin/cms_contactus')->with('success_msg', 'Detail updated successfully!');
             }else{
-                return redirect('cms_contactus')->with('error_msg', 'Problem was occured.. Please try again!!!!');
+                return redirect('admin/cms_contactus')->with('error_msg', 'Problem was occured.. Please try again!!!!');
             }
         }
     }

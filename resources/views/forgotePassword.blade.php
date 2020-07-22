@@ -13,7 +13,7 @@
                 {{ session()->get('error_msg') }}
             </div>
             @endif
-            <form id="trainerforgotePassword" method="POST">
+            <form id="forgotePassword" method="POST">
                 <input type="hidden" name="_token"  id="csrf-token" value="{{ csrf_token() }}">
                 <h1>Forgot Password</h1>
                 <div class="auth-input">
@@ -25,7 +25,7 @@
                 <div class="clearfix"></div>
                 <div class="separator">
                     <p class="change_link">New to site?
-                    <a href="{{ url('/trainer/login') }}"> Login </a>
+                    <a href="{{ route('/admin/login') }}"> Login </a>
                     </p>
 
                     <div class="clearfix"></div>
@@ -33,7 +33,7 @@
 
                     <div>
                     <h1><i class="fa fa-paw"></i> WellFit360</h1>
-                    <p>©{{ date("Y") }} All Rights Reserved.</p>
+                    <p>©2020 All Rights Reserved.</p>
                     </div>
                 </div>
             </form>

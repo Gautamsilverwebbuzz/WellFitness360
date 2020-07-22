@@ -57,8 +57,8 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	
 
 	
-	Route::get('/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('user-trainer-activity');
-	Route::post('/save-user-trainer-activity', 'DashboardController@saveUserandTrainerActivity')->name('save-user-trainer-activity');
+	Route::get('admin/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('admin/user-trainer-activity');
+	Route::post('admin/save-user-trainer-activity', 'DashboardController@saveUserandTrainerActivity')->name('admin/save-user-trainer-activity');
 
 	//Module management
 	Route::get('/module/delete/{id}', 'ModulesController@destroy');
@@ -69,71 +69,67 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	Route::resource('rolepermission', 'RolesPermissionController');
 
 	// Trainer Management
-	Route::get('/trainerManagement/delete/{id}', 'TrainerController@destroy');
-	Route::get('/trainerManagement/apporved/{id}', 'TrainerController@apporved');
-	Route::resource('trainerManagement', 'TrainerController');
+	Route::get('admin/trainerManagement/delete/{id}', 'TrainerController@destroy');
+	Route::get('admin/trainerManagement/apporved/{id}', 'TrainerController@apporved');
+	Route::resource('admin/trainerManagement', 'TrainerController');
 
 	// User Management
-	Route::get('/UserManagement/delete/{id}', 'UserController@destroy');
-	Route::match(['GET', 'POST'], 'check-email-register', 'UserController@EmailCheckRegister')->name('emailregister');
-	Route::resource('UserManagement', 'UserController');
+	Route::get('admin/UserManagement/delete/{id}', 'UserController@destroy');
+	Route::match(['GET', 'POST'], 'admin/check-email-register', 'UserController@EmailCheckRegister')->name('emailregister');
+	Route::resource('admin/UserManagement', 'UserController');
 
 	// Trainer Categories Management
-	Route::get('/trainercategoriesManagement/edit/{id}', 'TrainerCategoriesController@edit');
-	Route::post('/trainercategoriesManagement/update/{id}', 'TrainerCategoriesController@update')->name('trainercategoriesManagement.update');
-	Route::get('/trainercategoriesManagement/delete/{id}', 'TrainerCategoriesController@destroy');
-	Route::resource('trainercategoriesManagement', 'TrainerCategoriesController');
+	Route::get('admin/trainercategoriesManagement/edit/{id}', 'TrainerCategoriesController@edit');
+	Route::post('admin/trainercategoriesManagement/update/{id}', 'TrainerCategoriesController@update')->name('admin/trainercategoriesManagement.update');
+	Route::get('admin/trainercategoriesManagement/delete/{id}', 'TrainerCategoriesController@destroy');
+	Route::resource('admin/trainercategoriesManagement', 'TrainerCategoriesController');
 
 	// Categories Management
-	Route::get('/categoriesManagement/delete/{id}', 'CategoriesController@destroy');
-	Route::resource('categoriesManagement', 'CategoriesController');
+	Route::get('admin/categoriesManagement/delete/{id}', 'CategoriesController@destroy');
+	Route::resource('admin/categoriesManagement', 'CategoriesController');
 
 	// Sub Categories Management
-	Route::get('/subcategoriesManagement/delete/{id}', 'SubCategoriesController@destroy');
-	Route::resource('subcategoriesManagement', 'SubCategoriesController');
+	Route::get('admin/subcategoriesManagement/delete/{id}', 'SubCategoriesController@destroy');
+	Route::resource('admin/subcategoriesManagement', 'SubCategoriesController');
 
 	// Event Management
-	Route::get('/eventManagement/delete/{id}', 'EventController@destroy');
-	Route::resource('eventManagement', 'EventController');
+	Route::get('admin/eventManagement/delete/{id}', 'EventController@destroy');
+	Route::resource('admin/eventManagement', 'EventController');
 
 	// Subscription Management
-	Route::get('/SubscriptionPlanManagement/delete/{id}', 'SubscriptionPlanController@destroy');
-	Route::resource('SubscriptionPlanManagement', 'SubscriptionPlanController');
+	Route::get('admin/SubscriptionPlanManagement/delete/{id}', 'SubscriptionPlanController@destroy');
+	Route::resource('admin/SubscriptionPlanManagement', 'SubscriptionPlanController');
 	
 	// Blog Management
-	Route::get('/blogManagement/delete/{id}', 'BlogController@destroy');
-	Route::resource('blogManagement', 'BlogController');
+	Route::get('admin/blogManagement/delete/{id}', 'BlogController@destroy');
+	Route::resource('admin/blogManagement', 'BlogController');
 
 	// CMS-Pages Managment
-	Route::match(['GET', 'POST'], 'cms_aboutus', 'CMSPagesController@aboutUs')->name('cms_aboutus');
-	Route::match(['GET', 'POST'], 'cms_contactus', 'CMSPagesController@contactus')->name('cms_contactus');
+	Route::match(['GET', 'POST'], 'admin/cms_aboutus', 'CMSPagesController@aboutUs')->name('admin/cms_aboutus');
+	Route::match(['GET', 'POST'], 'admin/cms_contactus', 'CMSPagesController@contactus')->name('admin/cms_contactus');
 
 	// Site Setting
-	Route::get('/setting', 'SettingController@siteSetting')->name('setting');
-	Route::put('/setting/update', 'SettingController@update')->name('settingUpdate');
+	Route::get('admin/setting', 'SettingController@siteSetting')->name('admin/setting');
+	Route::put('admin/setting/update', 'SettingController@update')->name('admin/settingUpdate');
 
 	// E-shop Management
-	Route::get('/E_shopManagement/delete/{id}', 'EshopController@destroy');
-	Route::resource('E_shopManagement', 'EshopController');
+	Route::get('admin/E_shopManagement/delete/{id}', 'EshopController@destroy');
+	Route::resource('admin/E_shopManagement', 'EshopController');
 
 	// Fees Management
-	Route::get('/FeesManagement/delete/{id}', 'FeesController@destroy');
-	Route::resource('FeesManagement', 'FeesController');
+	Route::get('admin/FeesManagement/delete/{id}', 'FeesController@destroy');
+	Route::resource('admin/FeesManagement', 'FeesController');
 
 });
 
 
 /*Trainer Route START*/
-Route::get('/trainer/logout', 'Trainer\LoginController@logout')->name('/trainer/logout');
+/*Route::get('/trainer/logout', 'Trainer\LoginController@logout')->name('/trainer/logout');
 Route::match(['GET', 'POST'], 'trainer/login', 'Trainer\LoginController@index');
 Route::match(['GET', 'POST'], 'trainer/login-check', 'Trainer\LoginController@loginCheck')->name('trainer/login-check');
-Route::match(['GET', 'POST'], 'trainer/check-email', 'Trainer\LoginController@checkEmail')->name('trainer/check-email');
-Route::match(['GET', 'POST'], '/trainer/forgetPassword', 'Trainer\ForgotPasswordController@forgetPassword')->name('/trainer/forgetPassword');
-Route::match(['GET', 'POST'], '/trainer/resetPassword', 'Trainer\ForgotPasswordController@resetPassword')->name('/trainer/resetPassword');
-Route::group(['middleware' => 'trainerlogin','namespace' => 'Trainer'], function () {
-	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
-	Route::match(['GET', 'POST'], '/trainer/changePassword', 'LoginController@changePassword')->name('/trainer/changePassword');
-});
+Route::match(['GET', 'POST'], 'trainer/check-email', 'Trainer\LoginController@checkEmail')->name('trainer/check-email');*/
+// Route::group(['middleware' => 'trainerlogin','namespace' => 'Trainer'], function () {
+// });
 /*Trainer Route END*/
 
 
@@ -141,11 +137,19 @@ Route::group(['middleware' => 'trainerlogin','namespace' => 'Trainer'], function
 Route::get('blog', 'Frontend\HomeController@blog')->name('blog');
 Route::get('blog-details/{id}', 'Frontend\HomeController@blogDetails');
 
-Route::group(['middleware' => 'login','namespace' => 'Frontend'], function () {
-	Route::get('logout', 'LoginController@logout')->name('logout');
-	Route::match(['GET', 'POST'], 'login', 'LoginController@index');
-	Route::match(['GET', 'POST'], '/check-email', 'LoginController@checkEmail')->name('/check-email');
-	Route::match(['GET', 'POST'], '/login-check', 'LoginController@loginCheck')->name('/login-check');
+Route::get('logout', 'LoginController@logout')->name('logout');
+Route::match(['GET', 'POST'], 'login', 'LoginController@index');
+Route::match(['GET', 'POST'], '/check-email', 'LoginController@checkEmail')->name('/check-email');
+Route::match(['GET', 'POST'], '/login-check', 'LoginController@loginCheck')->name('/login-check');
+Route::match(['GET', 'POST'], '/forgetPassword', 'ForgotPasswordController@forgetPassword')->name('/forgetPassword');
+Route::match(['GET', 'POST'], '/resetPassword', 'ForgotPasswordController@resetPassword')->name('/resetPassword');
+
+Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => 'Trainer'], function () {
+	/*Trainer */
+	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
+	Route::match(['GET', 'POST'], '/trainer/changePassword', 'DashboardController@changePassword')->name('/trainer/changePassword');
+	Route::match(['GET', 'POST'], '/trainer/profile', 'DashboardController@trainerProfile')->name('/trainer/profile');
+	/*Trainer*/
 });
 
 /* Front Route END*/

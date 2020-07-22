@@ -1,9 +1,9 @@
-@extends('backend.layouts.app')
+@extends('trainer.layouts.app')
 @section('content')
 <div class="main_container">
-	@include('backend.templates.sidebar')
+	@include('trainer.templates.sidebar')
 	<!-- top navigation -->
-	@include('backend.templates.header')
+	@include('trainer.templates.header')
 	<!-- /top navigation -->
 	<!-- page content -->
 	<div class="right_col" role="main">
@@ -36,7 +36,7 @@
                         {{ session()->get('error_msg') }}
                     </div>
                     @endif
-					<form id="changePassword" action="{{ route('/admin/changePassword') }}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
+					<form id="trainerchangePassword" method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
 							<input type="hidden" name="_token" value="{{ csrf_token() }} ">
 							<div class="form-group">
 							<div class="form-group">
@@ -64,7 +64,6 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button class="btn btn-primary" type="button" onclick="window.history.go(-1); return false;">Back</button>
-									<button class="btn btn-primary" type="reset">Reset</button>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 							</div>
@@ -77,7 +76,7 @@
 </div>
 <!-- /page content -->
 <!-- footer content -->
-@include('backend.templates.footer')
+@include('trainer.templates.footer')
 <!-- /footer content -->
 </div>
 @endsection

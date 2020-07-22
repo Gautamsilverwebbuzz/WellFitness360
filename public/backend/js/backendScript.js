@@ -144,7 +144,7 @@ $(document).ready(function () {
 				required:true,
 				email:true,
 				remote: {
-					url: BASE_URL+"/check-email-register",
+					url: BASE_URL+"/admin/check-email-register",
 					type: "post",
 					data:{
 						"_token": $('#csrf-token').val(),
@@ -204,7 +204,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/UserManagement/delete/'+id,
+				url: BASE_URL+'/admin/UserManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -289,7 +289,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/trainerManagement/delete/'+id,
+				url: BASE_URL+'/admin/trainerManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -367,7 +367,7 @@ $(document).ready(function () {
 					edit: {
 						btnClass: 'btn-green',
 						action:function(){
-							location.href = BASE_URL + '/trainercategoriesManagement/edit/' + id;
+							location.href = BASE_URL + '/admin/trainercategoriesManagement/edit/' + id;
 						}
 					},
 					delete:{
@@ -382,7 +382,7 @@ $(document).ready(function () {
 
 								buttons: {
 									confirm: function (){
-										location.href = BASE_URL + '/trainercategoriesManagement/delete/' + id;
+										location.href = BASE_URL + '/admin/trainercategoriesManagement/delete/' + id;
 									},
 									cancel: function () {
 									},
@@ -513,7 +513,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/E_shopManagement/delete/'+id,
+				url: BASE_URL+'/admin/E_shopManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -571,7 +571,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/FeesManagement/delete/'+id,
+				url: BASE_URL+'/admin/FeesManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -641,7 +641,7 @@ $(document).ready(function () {
 			$("#cover-spin").css("display", "block");
 			$.ajax({
 				type: 'POST',
-				url: BASE_URL+'/save-user-trainer-activity',
+				url: BASE_URL+'/admin/save-user-trainer-activity',
 				data:{
 					"_token": $('#csrf-tokens').val(),
 					id:val,
@@ -729,7 +729,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/categoriesManagement/delete/'+id,
+				url: BASE_URL+'/admin/categoriesManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -852,7 +852,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/subcategoriesManagement/delete/'+id,
+				url: BASE_URL+'/admin/subcategoriesManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -940,7 +940,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/eventManagement/delete/'+id,
+				url: BASE_URL+'/admin/eventManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
@@ -1000,7 +1000,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/SubscriptionPlanManagement/delete/'+id,
+				url: BASE_URL+'/admin/SubscriptionPlanManagement/delete/'+id,
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
 					var object = JSON.parse(JSON.stringify(response));
@@ -1132,7 +1132,7 @@ $(document).ready(function () {
 		if(confirm("Are you sure you want to delete this?")){
 			$.ajax({
 				type: 'GET',
-				url: BASE_URL+'/blogManagement/delete/'+id,
+				url: BASE_URL+'/admin/blogManagement/delete/'+id,
 				success: function (response) {
 					$("#cover-spin").css("display", "none");
 					var object = JSON.parse(JSON.stringify(response));

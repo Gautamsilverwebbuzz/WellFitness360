@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Trainer;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -30,13 +30,13 @@ class ForgotPasswordController extends Controller
 	public function forgetPassword(Request $request){
 		$method = $request->method();
 		if($request->isMethod('get')){
-			return view('trainer.forgotePassword');
+			return view('forgotePassword');
 		}
 
 		if($request->isMethod('post')){
 			$userData  = User::where('email',trim($request->email))->whereNotIn('role_id',[1,2])->first(); // Role id 1 = 'admin, 2 = User'
 			if($userData){
-				$url = env('APP_URL').'/trainer/resetPassword';
+				$url = env('APP_URL').'/resetPassword';
 				$rememberToken = Str::random(120);
 				$userData->remember_token = $rememberToken;
 				$save = $userData->save();
@@ -70,15 +70,15 @@ class ForgotPasswordController extends Controller
 					$interval  = abs($currentDateTime - $updatedDate);
 					$minutes   = round($interval / 60);
 					if($minutes <= 10){
-						return view('trainer.resetPassword',compact('token'));
+						return view('resetPassword',compact('token'));
 					}else{
-						return redirect('trainer/forgetPassword')->with('error_msg', 'Reset Password link has been expired. Please try again...');
+						return redirect('forgetPassword')->with('error_msg', 'Reset Password link has been expired. Please try again...');
 					}
 				}else{
-					return redirect('trainer/forgetPassword')->with('error_msg', 'Invalid token url reset password. Please try to using valid token url');
+					return redirect('forgetPassword')->with('error_msg', 'Invalid token url reset password. Please try to using valid token url');
 				}
 			}else{
-				return redirect('trainer/forgetPassword')->with('error_msg', 'Token not found in reset password..Please try again!!!!!!!');
+				return redirect('forgetPassword')->with('error_msg', 'Token not found in reset password..Please try again!!!!!!!');
 			}
 		}
 
@@ -96,10 +96,10 @@ class ForgotPasswordController extends Controller
 							'email' => trim($user->email),
 							'password' => trim($request->password),
 							'subject' => "WellFit360",
-							'verifyUrl' => env('APP_URL').'/trainer/login'
+							'verifyUrl' => env('APP_URL').'/login'
 						);
 						$sendMail = Helper::sendMail($data,'email.sendCredential');
-						return response()->json(array('status' => 1,'message'=>'Your Password has been changed successfully.','redirecturl' => '/trainer/login'));
+						return response()->json(array('status' => 1,'message'=>'Your Password has been changed successfully.','redirecturl' => '/login'));
 					}else{
 						return response()->json(array('status' => 1,'message'=>'Problem was accured error .Please try again.'));
 					}

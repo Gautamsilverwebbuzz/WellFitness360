@@ -29,7 +29,16 @@ $RolePermission = [];
 		<br />
 		<!-- sidebar menu -->
 		{{--  trainer-sidebar  --}}
-
+		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+			<div class="menu_section">
+				<h3>General</h3>
+				<ul class="nav side-menu">
+					<li class="{{ (request()->is('/trainer/dashboard'))? 'current-page': ''  }}">
+						<a href="{{ route('/trainer/dashboard') }}"><i class="fa fa-home"></i>Dashborad</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 		{{--  End User-sidebar  --}}
 		{{--  User-sidebar  --}}
 		
@@ -46,7 +55,7 @@ $RolePermission = [];
 			<a data-toggle="tooltip" data-placement="top" title="Lock">
 			<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 			</a>
-			<a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('/trainer/logout') }}">
+			<a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}">
 			<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 			</a>
 		</div>

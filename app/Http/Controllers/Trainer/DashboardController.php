@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Trainer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
+use Session;
+use Illuminate\Support\Facades\Hash;
+use App\Role;
 use App\Http\Models\UserTrainerActivity;
+use App\Helpers\Helper;
 
 class DashboardController extends Controller
 {
@@ -95,25 +99,65 @@ class DashboardController extends Controller
 		//
 	}
 
-	public function UserandTrainerActivity(Request $request){
-
-		$users = User::where('role_id','!=',"1")->get()->toArray();
-		$usertrainer = UserTrainerActivity::find(1)->toArray();
-		return view('backend.usertraineractivity',compact('users','usertrainer'));
+	public function trainerProfile(Request $request){
+		$method = $request->method();
+		$user_id = Session::get('user')['user_id'];
+		if($request->isMethod('get')) {
+			$trainerprofile = User::where('id',$user_id)->first()->toArray();
+			return view('trainer.profile',compact('trainerprofile'));
+		}
+		if($request->isMethod('post')) {
+			$profileUpdate = User::find($user_id);
+			$profileUpdate->name = $request->name;
+			$profileUpdate->sur_name = $request->surname;
+			$profileUpdate->gender = $request->gender;
+			$profileUpdate->contact_no = $request->contact_no;
+			$profileUpdate->age = $request->age;
+			$profileUpdate->height = $request->height;
+			$profileUpdate->weight = $request->weight;
+			$profileUpdate->level = $request->level;
+			$profileUpdate->biography = $request->biography;
+			$profileUpdate->goals = $request->goals;
+			$profileUpdate->experience = $request->experience;
+			$result = $profileUpdate->save();
+			if($result){
+				return response()->json(array('status' => 1,'message'=>'Profile Updated Successfully.'));
+			}else{
+				return response()->json(array('status' => 0,'message'=>'Something went wrong.'));
+			}
+		}
 	}
 
-	public function saveUserandTrainerActivity(Request $request){
-		$id = json_encode($request->id);
-		$UserTrainerActivity = UserTrainerActivity::find(1);
-		$UserTrainerActivity->user_id = $id;
-		$UserTrainerActivity->save();
-		if($UserTrainerActivity){
-            $message = 'UserAndTrainerActivity updated successfully!';
-            $status = true;
-        }else{
-            $message = 'Please try again';
-            $status = false;
-        }
-       return response()->json(['status' => $status,'message' => $message]);
+	public function changePassword(Request $request){
+		if(Session::get('user')['user_id'] != ''){
+			$user_id = Session::get('user')['user_id'];
+			$method = $request->method();
+			if($request->isMethod('get')) {
+				return view('trainer.changePassword');
+			}
+			if($request->isMethod('post')) {
+				$userData = Helper::getUserData($user_id);
+				if(Hash::check($request->old_password,$userData->password)){
+					if($request->new_password == $request->confirm_password){
+						$user = User::find($user_id);
+						$user->password  =  bcrypt($request->new_password);
+						$user->save();
+						if($user){
+							Session::flush();
+							$redirect = '/login';
+							return response()->json(array('status' => 1,'message'=>'Password has been changed successfully....!','redirecturl' => $redirect));
+						}else{
+							return response()->json(array('status' => 0,'message'=>'Please try again...'));
+						}
+					}else{
+						return response()->json(array('status' => 0,'message'=>'New password & Confirm Password does not match!'));
+					}
+				}else{
+					return response()->json(array('status' => 0,'message'=>'Old password incorrect!'));
+				}
+			}
+		}else{
+			return redirect('/login');
+		}
 	}
 }

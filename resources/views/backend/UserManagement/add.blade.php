@@ -20,7 +20,7 @@
                     <div class="x_content">
                         <br />
                         <form id="userForm" action="{{ route('UserManagement.store') }}"  method="post" class="form-horizontal form-label-left">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }} ">
+                            <input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token() }} ">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                                 </label>

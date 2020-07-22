@@ -69,7 +69,7 @@ class FeesController extends Controller
 		$result = $Fees->save();  // save data
 
 		if($result){
-			return redirect('FeesManagement')->with('success_msg', 'Fees added successfully.');
+			return redirect('admin/FeesManagement')->with('success_msg', 'Fees added successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -132,7 +132,7 @@ class FeesController extends Controller
 		$result = $Fees->save();  // save data
 
 		if($result){
-			return redirect('FeesManagement')->with('success_msg', 'Fees Updated successfully.');
+			return redirect('admin/FeesManagement')->with('success_msg', 'Fees Updated successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}

@@ -59,5 +59,6 @@ return [
         'edit_subscription_plan' => 'Edit Subscription Plan',
         'add_subscription_plan' =>'Add Subscription Plan',
         'amount' =>'Amount',
+        'profile' =>'Profile',
     ]
 ];
