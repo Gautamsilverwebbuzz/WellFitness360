@@ -10,6 +10,12 @@ $(document).ready(function() {
 	if($("#experience").length){
 		CKEDITOR.replace( 'experience' );
 	}
+	if($("#skils").length){
+		$("#skils").select2({
+			placeholder: "Select a Skils",
+    		allowClear: true
+		});
+	}
 	/*Profile Page*/
 
 	$( "#trainerlogin" ).validate({
@@ -132,6 +138,9 @@ $(document).ready(function() {
 			gender:{
 				required:true,
 			},
+			'skils[]':{
+				required:true,
+			},
 			age:{
 				required:true,
 			},
@@ -168,6 +177,9 @@ $(document).ready(function() {
 			gender:{
 				required: 'Please select gender.'
 			},
+			'skils[]':{
+				required:"Please select skils.",
+			},
 			age:{
 				required: 'Please select age.'
 			},
@@ -198,9 +210,10 @@ $(document).ready(function() {
 				error.appendTo('.Gendererror');
 			}else if (element.attr("name") == "biography" ){
 				error.insertAfter(".biographyerror");
-			}
-			else if (element.attr("name") == "goals" ){
+			}else if (element.attr("name") == "goals" ){
 				error.insertAfter(".goalserror");
+			}else if (element.attr("name") == "skils[]" ){
+				error.insertAfter(".skils-error");
 			}else if (element.attr("name") == "experience" ){
 				error.insertAfter(".experienceerror");
 			}else {
@@ -208,23 +221,20 @@ $(document).ready(function() {
 			}
 		},
 		submitHandler: function (form) {
-			$("#cover-spin").css("display", "block");
-			$("#overlay").fadeIn(300);
-			$.ajax({
-				url  : BASE_URL+'/trainer/profile',
-				type : 'POST',
-				data : $('#trainerprofile').serialize(),
-				success : function(response) {
-					$("#cover-spin").css("display", "none");
-					$("#overlay").fadeOut(300);
-					var data = JSON.parse(JSON.stringify(response));
-					if(data.status){
-						toastr.success(data.message);
-					}else{
-						toastr.error(data.message);
-					}
-				}
-			});
+			form.submit();
 		}
+	});
+
+	$('#trainersettingForm').validate({
+		rules: {
+			contact_no:{
+				number:true,
+			},
+		},
+		messages: {
+			contact_no:{
+				number:'Please enter valid contact no.',
+			},
+		},
 	});
 });

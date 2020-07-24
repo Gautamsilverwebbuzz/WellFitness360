@@ -476,7 +476,15 @@ label.error{
     padding-right: 15px;
 }
 
-
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-item:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown .dropdown-menu{
+    top: 98%;
+}
 
 /*responsive css*/
 

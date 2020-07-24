@@ -126,4 +126,111 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	$('#userregisterForm').validate({
+		rules: {
+			firstname:{
+				required:true,
+			},
+			lastname:{
+				required:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			password:{
+				required:true,
+			},
+		},
+		messages: {
+			firstname:{
+				required:'Please enter firstname.',
+			},
+			lastname:{
+				required:'Please enter lastname.',
+			},
+			email:{
+				required:'Please enter email.',
+				email:"Please enter valid email."
+			},
+			password:{
+				required:'Please enter password.',
+			},
+		},
+	});
+
+	$('#trainerregister').validate({
+		rules: {
+			firstname:{
+				required:true,
+			},
+			lastname:{
+				required:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			password:{
+				required:true,
+			},
+			certifiaction_photo:{
+				required:true,
+				extension: "JPG|JPEG|PNG",
+			},
+			id_passport_photo:{
+				required:true,
+				extension: "JPG|JPEG|PNG",
+			},
+		},
+		messages: {
+			firstname:{
+				required:'Please enter firstname.',
+			},
+			lastname:{
+				required:'Please enter lastname.',
+			},
+			email:{
+				required:'Please enter email.',
+				email:"Please enter valid email."
+			},
+			password:{
+				required:'Please enter password.',
+			},
+			certifiaction_photo:{
+				required:"Please select certifiaction photo.",
+				extension: "Allowed only JPG|JPEG|PNG files extension",
+			},
+			id_passport_photo:{
+				required:"Please selcet ID/Passport photo.",
+				extension: "Allowed only JPG|JPEG|PNG files extension",
+			},
+		},
+		errorPlacement: function (error, element) {
+			if(element.attr("name") == "certifiaction_photo") {
+				error.appendTo('.certifiaction_error');
+			}else if(element.attr("name") == "id_passport_photo") {
+				error.appendTo('.id_passport_error');
+			}
+			else {
+				error.insertAfter(element);
+			}
+		},
+	});
+
+	$(document).on('change','.up', function(){
+		var names = [];
+		var length = $(this).get(0).files.length;
+		for (var i = 0; i < $(this).get(0).files.length; ++i) {
+			names.push($(this).get(0).files[i].name);
+		}
+		if(length>2){
+			var fileName = names.join(', ');
+			$(this).closest('.form-group').find('.form-control').attr("value",length+" files selected");
+		}
+		else{
+			$(this).closest('.form-group').find('.form-control').attr("value",names);
+		}
+	});
 });

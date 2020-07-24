@@ -58,6 +58,31 @@ class TrainerCategories extends Model
 		return $this->html;
 	}
 
+	public function get_trainer_skils($catid,$trainerskils){
+		$Model = new static;
+		$space = '';
+		$data = $Model->where('par_cat_id',$catid)->get();
+		if($data){
+			if($catid == 0){
+				$space='';
+			}else{
+				$space .="----";
+			}
+
+			$catrow = $data->toArray();
+			$selected = '';
+			foreach($catrow as $row){
+				if(!empty($trainerskils) && in_array($row['trainer_cat_id'], $trainerskils)){
+					$selected = 'selected';
+				}
+				$this->html .= "<option value='".$row['trainer_cat_id']."' ".$selected.">".$space.$row['trainer_cat_name']."</option>";
+				$this->get_trainer_skils($row['trainer_cat_id'],$trainerskils);
+			}
+		}
+		return $this->html;
+	}
+
+
 	/**
 	 * USE : Get data category by id
 	 */

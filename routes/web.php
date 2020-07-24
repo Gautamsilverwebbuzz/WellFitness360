@@ -122,20 +122,13 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 
 });
 
-
-/*Trainer Route START*/
-/*Route::get('/trainer/logout', 'Trainer\LoginController@logout')->name('/trainer/logout');
-Route::match(['GET', 'POST'], 'trainer/login', 'Trainer\LoginController@index');
-Route::match(['GET', 'POST'], 'trainer/login-check', 'Trainer\LoginController@loginCheck')->name('trainer/login-check');
-Route::match(['GET', 'POST'], 'trainer/check-email', 'Trainer\LoginController@checkEmail')->name('trainer/check-email');*/
-// Route::group(['middleware' => 'trainerlogin','namespace' => 'Trainer'], function () {
-// });
-/*Trainer Route END*/
-
-
 /* Front Route START*/
 Route::get('blog', 'Frontend\HomeController@blog')->name('blog');
 Route::get('blog-details/{id}', 'Frontend\HomeController@blogDetails');
+Route::match(['GET', 'POST'], 'user/register', 'Frontend\RegisterController@userregister')->name('user/register');
+Route::match(['GET', 'POST'], 'user/registerUser', 'Frontend\RegisterController@registerUser')->name('user/registerUser');
+Route::match(['GET', 'POST'], 'trainer/register', 'Frontend\RegisterController@trainerRegister')->name('trainer/register');
+Route::match(['GET', 'POST'], 'physique', 'Frontend\RegisterController@Physique')->name('physique');
 
 Route::get('logout', 'LoginController@logout')->name('logout');
 Route::match(['GET', 'POST'], 'login', 'LoginController@index');
@@ -149,6 +142,8 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
 	Route::match(['GET', 'POST'], '/trainer/changePassword', 'DashboardController@changePassword')->name('/trainer/changePassword');
 	Route::match(['GET', 'POST'], '/trainer/profile', 'DashboardController@trainerProfile')->name('/trainer/profile');
+	Route::match(['GET', 'POST'], 'trainer/setting', 'SettingController@trainerSetting')->name('trainer/setting');
+	Route::match(['GET', 'POST'], 'trainer/setting/update', 'SettingController@update')->name('trainer/setting/update');
 	/*Trainer*/
 });
 

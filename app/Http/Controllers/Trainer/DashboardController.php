@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\View;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Role;
-use App\Http\Models\UserTrainerActivity;
 use App\Helpers\Helper;
+use App\Http\Models\TrainerCategories;
 
 class DashboardController extends Controller
 {
@@ -21,6 +21,7 @@ class DashboardController extends Controller
 	 */
 	public function __construct()
 	{
+		$this->Categories = new TrainerCategories;
 		//$this->middleware('auth');
 	}
 
@@ -104,14 +105,31 @@ class DashboardController extends Controller
 		$user_id = Session::get('user')['user_id'];
 		if($request->isMethod('get')) {
 			$trainerprofile = User::where('id',$user_id)->first()->toArray();
-			return view('trainer.profile',compact('trainerprofile'));
+			$trainerskils =  ($trainerprofile['trainer_skils']) ? json_decode($trainerprofile['trainer_skils']) : [];
+			$catid = 0;
+			$trainerprofile1 = '';
+			$showcat = $this->Categories->get_trainer_skils($catid,$trainerskils);
+			return view('trainer.profile',compact('trainerprofile','showcat'));
 		}
 		if($request->isMethod('post')) {
+			// Trainer Profile Image upload
+			$public_path = 'trainer/Images';
+			$fullImagePath = null;
+			if($request->hasfile('profile_image')){
+				$image = $request->file('profile_image');
+				$name =  time().$image->getClientOriginalName();
+				$image->move(public_path($public_path),$name);
+				$fullImagePath = $public_path.'/'.$name;
+			}
 			$profileUpdate = User::find($user_id);
 			$profileUpdate->name = $request->name;
 			$profileUpdate->sur_name = $request->surname;
 			$profileUpdate->gender = $request->gender;
 			$profileUpdate->contact_no = $request->contact_no;
+			if(isset($request->profile_image) && !empty($fullImagePath)){
+				$profileUpdate->profile_image  = $fullImagePath;
+			}
+			$profileUpdate->trainer_skils = json_encode($request->skils);
 			$profileUpdate->age = $request->age;
 			$profileUpdate->height = $request->height;
 			$profileUpdate->weight = $request->weight;
@@ -121,10 +139,10 @@ class DashboardController extends Controller
 			$profileUpdate->experience = $request->experience;
 			$result = $profileUpdate->save();
 			if($result){
-				return response()->json(array('status' => 1,'message'=>'Profile Updated Successfully.'));
-			}else{
-				return response()->json(array('status' => 0,'message'=>'Something went wrong.'));
-			}
+            	return redirect('/trainer/profile')->with('success_msg', 'Profile updated successfully.');
+	        }else{
+	            return back()->with('error_msg', 'Problem was error accured.. Please try again..');
+	        }
 		}
 	}
 

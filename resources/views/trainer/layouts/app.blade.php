@@ -146,7 +146,7 @@
 	<script src="{{ asset('backend/vendors/moment/min/moment.min.js') }}"></script>
 	<!-- <script src="{{ asset('backend/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('backend/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script> -->
-	<script src="{{ asset('backend/js/select2.min.js') }}"></script>
+	<!-- <script src="{{ asset('backend/js/select2.min.js') }}"></script> -->
 	<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 	
 	<!-- Custom Theme Scripts -->

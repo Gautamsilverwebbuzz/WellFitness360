@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use Illuminate\Support\Facades\Session;
+use App\Http\Models\TrainerCategories;
 
 class TrainerController extends Controller
 {
@@ -89,8 +90,15 @@ class TrainerController extends Controller
 	 */
 	public function show($id)
 	{
-		$trainer_view = User::find($id);
-		return view('backend.TrainerManagement.trainer_view',compact('trainer_view'));
+		$trainer_view = User::find($id)->toArray();
+		$skils = json_decode($trainer_view['trainer_skils']);
+		$trainer_categories = array();
+		if(!empty($skils)){
+			foreach($skils as $val){
+				$trainer_categories[] = TrainerCategories::where('trainer_cat_id',$val)->get()->toArray();
+			}
+		}
+		return view('backend.TrainerManagement.trainer_view',compact('trainer_view','trainer_categories'));
 	}
 
 	/**

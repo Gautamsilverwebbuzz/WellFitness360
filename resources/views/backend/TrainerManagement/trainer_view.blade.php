@@ -27,12 +27,11 @@
 								<h3>{{ ucfirst($trainer_view['name']) }} {{ ucfirst($trainer_view['sur_name']) }}</h3>
 								<h4>Skills</h4>
 								<ul class="list-unstyled user_data">
-									<li>
-										<p>Yoga</p>
-									</li>
-									<li>
-										<p>Training & nutraion</p>
-									</li>
+									@if(!empty($trainer_categories))
+										@foreach($trainer_categories as $val)
+											<li>{{ $val[0]['trainer_cat_name'] }}</li>
+										@endforeach
+									@endif
 								</ul>
 							</div>
 							<div class="col-md-9 col-sm-9 col-xs-12">

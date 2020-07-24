@@ -25,7 +25,7 @@
 					<!-- <a href="javascript:void(0);" class="blue-btnwithout-redius btn">Start The Workout</a> -->
 				</form>
 				<a href="{{ url('forgetPassword') }}"> Forgot Password</a>
-				<p class="p1">Don't have an account?<a href="javascript:void(0);"> Sign Up</a></p>
+				<p class="p1">Don't have an account?<a href="{{ url('user/register') }}"> Sign Up</a></p>
 			</div>
 		</div>
 	</div>

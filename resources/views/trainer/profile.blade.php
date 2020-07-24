@@ -17,9 +17,21 @@
 						<h2>@lang('backend/list.forms.profile')</h2>
 						<div class="clearfix"></div>
 					</div>
+					@if(session()->has('success_msg'))
+						<div class="alert alert-success alert-dismissible">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							{{ session()->get('success_msg') }}
+						</div>
+					@endif
+					@if(session()->has('error_msg'))
+						<div class="alert alert-danger alert-dismissible">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							{{ session()->get('error_msg') }}
+						</div>
+					@endif
 					<div class="x_content">
 						<br />
-						<form id="trainerprofile" action="{{ url('trainer/profile') }}"  method="post" class="form-horizontal form-label-left">
+						<form id="trainerprofile" action="{{ url('trainer/profile') }}"  method="post" class="form-horizontal form-label-left" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }} ">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
@@ -65,6 +77,32 @@
 									<small class="text-danger">{{ $errors->first('gender') }}</small>
 								</div>
 								<div class="Gendererror"></div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Profile Image<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="file" name="profile_image" value="" id="profile_image" class="form-control col-md-7 col-xs-12" placeholder="Select image">
+									<small class="text-danger">{{ $errors->first('profile_image') }}</small>
+								</div>
+							</div>
+							<div class="form-group image_preview">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<img id="ImagePreview" src="@if(isset($trainerprofile['profile_image'])){{ asset($trainerprofile['profile_image']) }} @else {{ asset('trainer/Images/no_images.jpg') }} @endif" height="100px"/ >
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Skils</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<select id="skils" name="skils[]" class="form-control valid" aria-invalid="false" multiple="multiple">
+										{!! $showcat !!}
+									</select>
+									<small class="text-danger"></small>
+									<small class="text-danger skils-error">{{ $errors->first('skils') }}</small>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
