@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2020 at 08:33 AM
+-- Generation Time: Jul 24, 2020 at 03:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -43,6 +43,34 @@ CREATE TABLE `about_us` (
 
 INSERT INTO `about_us` (`ID`, `Title`, `Image`, `ShortDescription`, `LongDescription`, `created_at`, `updated_at`) VALUES
 (1, 'WellFitness360', 'backend/images/CMSPages/1589538567Screenshot_1.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2020-05-15 13:03:58', '2020-05-15 10:29:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `tag` varchar(150) NOT NULL,
+  `blogimage` varchar(255) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `url_alias` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`id`, `title`, `description`, `tag`, `blogimage`, `status`, `url_alias`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Take programs tailored to your fitness level', '<p>Lorem ipsum</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br />\r\n&nbsp;</p>', 'Blog', 'backend/images/BlogImages/1595222651blog2.jpg', '1', 'take-programs-fitness-level', '2020-07-15 11:38:11', '2020-07-20 11:03:47', NULL),
+(2, 'Take programs tailored to', '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<h3>Lorem ipsum</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<h3>Lorem ipsum</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>', 'Training', 'backend/images/BlogImages/1595222521blog1.jpg', '1', 'take-programs-fitness-level-1', '2020-07-20 10:52:01', '2020-07-20 11:03:57', NULL),
+(3, 'Take programs tailored to your fitness level', '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<h3>Lorem ipsum</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<h3>Lorem ipsum</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>', 'Yoga', 'backend/images/BlogImages/1595222569blog2.jpg', '1', 'take-programs-fitness-level-2', '2020-07-20 10:52:49', '2020-07-20 11:04:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -115,7 +143,7 @@ INSERT INTO `durations` (`id`, `duration`, `status`, `created_at`, `updated_at`)
 (1, '3 Months', 1, '2020-07-09 17:23:54', '2020-07-09 17:23:54'),
 (2, '6 Months', 1, '2020-07-09 17:23:54', '2020-07-09 17:23:54'),
 (3, '9 Months', 1, '2020-07-09 17:24:12', '2020-07-09 17:24:12'),
-(4, '1 Year', 1, '2020-07-09 17:24:12', '2020-07-09 17:24:12');
+(4, '1 Year', 0, '2020-07-09 17:24:12', '2020-07-09 17:24:12');
 
 -- --------------------------------------------------------
 
@@ -142,7 +170,8 @@ CREATE TABLE `e-shop` (
 INSERT INTO `e-shop` (`ID`, `Name`, `Description`, `Image`, `Shop_URL`, `Status`, `Created_At`, `Updated_At`, `deleted_at`) VALUES
 (1, 'Gym Discovery', 'Ahad Sports Club, Lokhandvala Road, Navi Fatehvadi Village, Sarkhej Road, Ahmedabad - 380055 (Map)', 'backend/images/ShopImages/1589785068download.jpg', 'https://www.justdial.com/Ahmedabad/Gym-Discovery-Sarkhej-Road/079PXX79-XX79-200217125129-N1V4_BZDET?xid=QWhtZWRhYmFkIEd5bXM=', 1, '2020-05-18 12:27:48', '2020-05-18 12:27:48', NULL),
 (2, 'MR Fitness', '1st Floor, The Address Complex, Vijay Cross Road, Navrangpura, Ahmedabad - 380009, Near By Honda Showroom', 'backend/images/ShopImages/1591178168news1.jpg', 'https://www.justdial.com/Ahmedabad/MR-Fitness-Near-By-Honda-Showroom-Navrangpura/079PXX79-XX79-181229152058-F4W8_BZDET?xid=QWhtZWRhYmFkIEd5bXM=', 1, '2020-05-18 12:28:52', '2020-05-18 12:28:52', NULL),
-(3, 'Test', 'test', 'backend/images/ShopImages/1591167588news1.jpg', 'https://www.justdial.com/Ahmedabad/Gym-Discovery-Sarkhej-Road/079PXX79-XX79-200217125129-N1V4_BZDET?xid=QWhtZWRhYmFkIEd5bXM=', 1, '2020-06-03 02:54:14', '2020-06-03 02:54:14', NULL);
+(3, 'Test', 'test', 'backend/images/ShopImages/1591167588news1.jpg', 'https://www.justdial.com/Ahmedabad/Gym-Discovery-Sarkhej-Road/079PXX79-XX79-200217125129-N1V4_BZDET?xid=QWhtZWRhYmFkIEd5bXM=', 1, '2020-06-03 02:54:14', '2020-06-03 02:54:14', NULL),
+(4, 'Test qwe', 'test', 'backend/images/ShopImages/1595419177person.png', 'https://www.google.co.in/', 1, '2020-07-22 17:29:37', '2020-07-22 17:29:37', '2020-07-22 17:32:17');
 
 -- --------------------------------------------------------
 
@@ -208,8 +237,11 @@ CREATE TABLE `feesmanagement` (
 --
 
 INSERT INTO `feesmanagement` (`ID`, `TrainerID`, `TrainerFee`, `AdminFee`, `TotalAmount`, `Created_at`, `Updated_at`, `deleted_at`) VALUES
-(2, 4, '10000', '5000', '15000', '2020-05-18 09:25:51', '2020-07-02 18:55:35', NULL),
-(3, 4, '50001', '1100', '51101', '2020-06-03 12:21:06', '2020-06-03 12:21:39', NULL);
+(2, 4, '10000', '5000', '15000', '2020-05-18 09:25:51', '2020-07-22 17:35:08', '2020-07-22 17:35:08'),
+(3, 4, '50001', '11000', '61001', '2020-06-03 12:21:06', '2020-07-22 17:35:02', NULL),
+(4, 4, '1500', '1500', '3000', '2020-07-22 17:33:15', '2020-07-22 17:33:15', NULL),
+(5, 4, '1500', '1500', '3000', '2020-07-22 17:34:25', '2020-07-22 17:34:25', NULL),
+(6, 5, '1500', '500', '2000', '2020-07-22 17:34:52', '2020-07-22 17:34:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -403,7 +435,7 @@ INSERT INTO `subscription_plan` (`id`, `Title`, `Amount`, `Duration_id`, `Status
 (1, 'Training & Nutrition', 3.64, 1, 1, '2020-07-09 18:00:57', '2020-07-09 18:49:07'),
 (2, 'Training', 94.44, 1, 1, '2020-07-09 18:01:22', '2020-07-09 18:01:22'),
 (3, 'Training & Nutrition', 3.64, 2, 1, '2020-07-09 18:01:46', '2020-07-09 18:01:46'),
-(4, 'Training', 94.44, 2, 1, '2020-07-09 18:02:11', '2020-07-09 18:02:11');
+(4, 'Training', 94.44, 2, 1, '2020-07-09 18:02:11', '2020-07-22 17:38:56');
 
 -- --------------------------------------------------------
 
@@ -425,7 +457,7 @@ CREATE TABLE `trainer_categories` (
 --
 
 INSERT INTO `trainer_categories` (`trainer_cat_id`, `trainer_cat_name`, `par_cat_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Aerial', 0, 1, '2020-05-14 13:20:16', '2020-05-14 13:20:16'),
+(1, 'Aerial', 0, 1, '2020-05-14 13:20:16', '2020-07-10 12:57:46'),
 (2, 'Acrobatics', 1, 1, '2020-05-14 13:20:57', '2020-05-14 13:20:57'),
 (4, 'Hammock', 1, 1, '2020-05-14 13:21:52', '2020-05-14 13:21:52'),
 (5, 'Kids', 1, 1, '2020-05-14 13:22:17', '2020-05-14 13:22:17'),
@@ -457,8 +489,55 @@ INSERT INTO `trainer_categories` (`trainer_cat_id`, `trainer_cat_name`, `par_cat
 (32, 'Ashtanga', 30, 1, '2020-05-14 13:43:25', '2020-05-14 13:43:25'),
 (33, 'Bikram', 30, 1, '2020-05-14 13:43:45', '2020-05-14 13:43:45'),
 (34, 'Personal training', 0, 1, '2020-05-14 13:44:20', '2020-05-14 13:44:20'),
-(35, 'Bodybuilding', 34, 1, '2020-05-14 13:44:41', '2020-05-14 13:44:41'),
-(36, 'test', 7, 1, '2020-06-03 12:20:29', '2020-06-03 12:20:29');
+(35, 'Bodybuilding', 34, 1, '2020-05-14 13:44:41', '2020-05-14 13:44:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainer_price_management`
+--
+
+CREATE TABLE `trainer_price_management` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `skils` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `duration` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `trainer_price_management`
+--
+
+INSERT INTO `trainer_price_management` (`id`, `user_id`, `title`, `skils`, `price`, `duration`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 4, 'Yoga', '10', 15000, 'Monthly', '2020-07-24 18:08:25', '2020-07-24 18:13:45', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainer_setting`
+--
+
+CREATE TABLE `trainer_setting` (
+  `id` int(11) NOT NULL,
+  `trainer_id` int(11) NOT NULL,
+  `Facebook_url` varchar(255) DEFAULT NULL,
+  `Instgram_url` varchar(255) DEFAULT NULL,
+  `Contactno` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `trainer_setting`
+--
+
+INSERT INTO `trainer_setting` (`id`, `trainer_id`, `Facebook_url`, `Instgram_url`, `Contactno`, `created_at`, `updated_at`) VALUES
+(1, 4, '', '', '7894561120', '2020-07-23 15:31:18', '2020-07-23 15:39:56');
 
 -- --------------------------------------------------------
 
@@ -487,6 +566,16 @@ CREATE TABLE `users` (
   `verified_token` longtext DEFAULT NULL,
   `remember_token` longtext DEFAULT NULL,
   `tranier_approved` enum('1','0') NOT NULL DEFAULT '0' COMMENT '"1 For approved","0 for unapproved"',
+  `trainer_skils` varchar(255) DEFAULT NULL,
+  `certifiaction_photo` varchar(255) DEFAULT NULL,
+  `id_passport_photo` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `height` varchar(255) DEFAULT NULL,
+  `weight` varchar(255) DEFAULT NULL,
+  `level` varchar(255) DEFAULT NULL,
+  `biography` text DEFAULT NULL,
+  `goals` text DEFAULT NULL,
+  `experience` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=Active , 0=Pending',
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -497,16 +586,19 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `sur_name`, `email`, `gender`, `contact_no`, `password`, `auth_provider`, `facebook_id`, `facebook_token`, `google_id`, `google_token`, `profile_image`, `social_profile_image`, `email_verified_at`, `email_verified`, `verified_token`, `remember_token`, `tranier_approved`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Admin', NULL, 'admin@admin.com', '1', NULL, '$2y$10$qfC743J0Panr0qCBrZVwj.chmClfouNMmQrC1da.6XXr1UCRYVzWC', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'cnZGJRPgbh1vlZWJijqD7qPLZGuZ5bytRvNuxtom410o5c8YZx678LpoOl62UpIYQdZClzpQnUsS3aqKrw81puU7CLgBbYLAvuwh8aA3xGlSmEuOPRpbemlP', NULL, '0', 0, '2020-05-09 08:29:33', '2020-06-26 11:00:20', NULL),
-(2, 2, 'Manoj', 'Prajapati', 'manoj1@silverwebbuzz.com', 'Male', '8785458754', '$2y$10$idB7frjqy9G3Pd821SyQ..b80Sqrg7GaebO8HdlZidxIFWGIFVNnG', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '0', 1, '2020-05-09 22:57:38', '2020-06-17 11:25:02', NULL),
-(3, 2, 'Bhavin', 'Patel', 'bhavin@silverwebbuzz.com', 'Male', '7887884574', '$2y$10$KD2w8dXIaS.2zl3ZLoh83uY82ANdRJu18ObqX3kqy3TthI0lZ4Mdm', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', 1, '2020-05-10 02:23:43', '2020-07-02 16:11:17', NULL),
-(4, 3, 'Gautam', 'Patel', 'gautam@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$4gTw8J1g5v491IY8tTpVB.flhxLWw3pckinfqMQIT3zBkv5aWP9xq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'RO54X1cNwh97dDAJNUITysautdEmUmpk782NVL7Z62OqWPqEGcg7Z4yHU1MPg5svCutpqMQHXa1OneUJ5GQzoF53l5dqmoWdtaYVapqaiVQRqjKfFwFjQwWp', '1', 1, '2020-05-12 05:52:50', '2020-07-09 10:18:17', NULL),
-(5, 3, 'Sachin', 'Suthar', 'bgautamp.gp912@gmail.com', 'Female', '7845124578', '$2y$10$BoS3GuP27GmXZvcOH.UP7OxmwlBPLHX4OIK7I2DaiC3MWvxFbGQG6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '1', 1, '2020-05-12 05:54:14', '2020-07-08 17:10:52', NULL),
-(9, 3, 'Hiral', 'Suthar', 'hiral@silverwebbuzz.com', 'Male', '7875457854', '$2y$10$FSjiWi.g1jEEoo0A4PVxrORCF1yKxmbU68biRAxooMR.FZy.s8Zxe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '1', 1, '2020-06-03 16:18:45', '2020-07-08 15:44:38', NULL),
-(11, 2, 'Manoj', 'Prajapati', 'manoj@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$QXBoSue.YR1atrovd/Bg..4w4iAAs7x0eaMyLMk/mu9jupaiWCIS6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-17 07:13:54', 1, 'NwsVbcY4JbJKP2uwVeD6vl4xkoRCs3gmnKdA8J4OVWBLeydVNi5uvy5jhJOgYnrCmKA1xix8MJMCscVGLJXQ5W3e57cRsf03GMkmXoaSkzrtFoYZJDPDylw1', NULL, '0', 0, '2020-06-17 12:02:57', '2020-06-18 17:05:18', NULL),
-(12, 2, 'Sachin', 'Suthar', 'sachin@silverwebbuzz.com', 'Male', '7046587954', '$2y$10$xXJju5MhLwpUv01o3KY7ne/Iys26rPojtMnix5DrJ1/FaiNV86Wwe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', 1, '2020-07-09 17:08:52', '2020-07-09 17:09:18', '2020-07-09 17:09:18'),
-(13, 3, 'Bhavin', 'Patel', 'bhavin78@silverwebbuzz.com', 'Male', '7845878979', '$2y$10$kPQRBdsyOzNAFUCd2u.kce6McL8LjKmktheaRVWD914/4p.5l1bnW', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', 1, '2020-07-09 17:10:08', '2020-07-09 17:10:08', NULL);
+INSERT INTO `users` (`id`, `role_id`, `name`, `sur_name`, `email`, `gender`, `contact_no`, `password`, `auth_provider`, `facebook_id`, `facebook_token`, `google_id`, `google_token`, `profile_image`, `social_profile_image`, `email_verified_at`, `email_verified`, `verified_token`, `remember_token`, `tranier_approved`, `trainer_skils`, `certifiaction_photo`, `id_passport_photo`, `age`, `height`, `weight`, `level`, `biography`, `goals`, `experience`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Admin', NULL, 'admin@admin.com', '1', NULL, '$2y$10$ix5TRm60.oQ6A2O/hXU3e.HAA3NWGzo3mXR2toGQee21O2.8yE5X2', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'cnZGJRPgbh1vlZWJijqD7qPLZGuZ5bytRvNuxtom410o5c8YZx678LpoOl62UpIYQdZClzpQnUsS3aqKrw81puU7CLgBbYLAvuwh8aA3xGlSmEuOPRpbemlP', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-05-09 08:29:33', '2020-07-16 10:53:03', NULL),
+(2, 2, 'Manoj', 'Prajapati', 'manoj1@silverwebbuzz.com', 'Male', '8785458754', '$2y$10$ix5TRm60.oQ6A2O/hXU3e.HAA3NWGzo3mXR2toGQee21O2.8yE5X2', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-05-09 22:57:38', '2020-06-17 11:25:02', NULL),
+(3, 2, 'Bhavin', 'Patel', 'bhavin@silverwebbuzz.com', 'Male', '7887884574', '$2y$10$KD2w8dXIaS.2zl3ZLoh83uY82ANdRJu18ObqX3kqy3TthI0lZ4Mdm', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-05-10 02:23:43', '2020-07-02 16:11:17', NULL),
+(4, 3, 'Gautam', 'Patel', 'gautam@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$VxrxXVS97ciVxWxlT.jj.u4w/nMIvRZxFiv3Nyj1jGMAS7hqSRfrq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'trainer/Images/1595480497pexels-photo-210019.jpeg', NULL, NULL, 1, NULL, 'J81bV6p8BfaYPbG8JyBLGXYCOdWCKn4uO2Bo7rED7YK9OC5TB5KGKUxdMjL3W75Mx0ZZ9HB5kZfli1atC2NDGAdPMlg6UQQCE5lnW4HMYDlavDcJF3EKBq0M', '1', '[\"1\",\"2\",\"10\",\"19\",\"22\",\"30\",\"34\"]', NULL, NULL, 20, '1', '28', 'Intermediate', '<p>dsfds</p>', '<p>fds</p>', '<ol>\r\n	<li>fdsfds</li>\r\n	<li>fdsf</li>\r\n	<li>fds</li>\r\n	<li>fds</li>\r\n	<li>fsd</li>\r\n</ol>', 1, '2020-05-12 05:52:50', '2020-07-23 12:51:39', NULL),
+(5, 3, 'Sachin', 'Suthar', 'bgautamp.gp912@gmail.com', 'Female', '7845124578', '$2y$10$BoS3GuP27GmXZvcOH.UP7OxmwlBPLHX4OIK7I2DaiC3MWvxFbGQG6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'uGXeOsqLtE84G84KXp4iKO7SlN8EYVec818lX5YJvgaJpCGYVwwfw894Zy1kGdk98PyRkYUsWKJL1NA7GOjwEABSPiITKwihkRnLy3r1DFJsusZ7jbDnfrcd', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-05-12 05:54:14', '2020-07-16 10:54:36', NULL),
+(9, 3, 'Hiral', 'Suthar', 'hiral@silverwebbuzz.com', 'Male', '7875457854', '$2y$10$FSjiWi.g1jEEoo0A4PVxrORCF1yKxmbU68biRAxooMR.FZy.s8Zxe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-06-03 16:18:45', '2020-07-08 15:44:38', NULL),
+(11, 2, 'Manoj', 'Prajapati', 'manoj@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$QXBoSue.YR1atrovd/Bg..4w4iAAs7x0eaMyLMk/mu9jupaiWCIS6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-17 07:13:54', 1, 'NwsVbcY4JbJKP2uwVeD6vl4xkoRCs3gmnKdA8J4OVWBLeydVNi5uvy5jhJOgYnrCmKA1xix8MJMCscVGLJXQ5W3e57cRsf03GMkmXoaSkzrtFoYZJDPDylw1', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-06-17 12:02:57', '2020-06-18 17:05:18', NULL),
+(12, 2, 'Sachin', 'Suthar', 'sachin@silverwebbuzz.com', 'Male', '7046587954', '$2y$10$xXJju5MhLwpUv01o3KY7ne/Iys26rPojtMnix5DrJ1/FaiNV86Wwe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-09 17:08:52', '2020-07-09 17:09:18', '2020-07-09 17:09:18'),
+(13, 3, 'Bhavin', 'Patel', 'bhavin78@silverwebbuzz.com', 'Male', '7845878979', '$2y$10$kPQRBdsyOzNAFUCd2u.kce6McL8LjKmktheaRVWD914/4p.5l1bnW', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-09 17:10:08', '2020-07-09 17:10:08', NULL),
+(14, 2, 'Test', 'test', 'testt@gmail.com', 'Male', '7879787897', '$2y$10$tnTjQ5KbTui.HUYrONAb/OqviKGdEtK1FeXNg7XwM71YtMrhpC1JO', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'pWgocZqWOhVaUdyP8roEhQbpzo1qJJyPY2mDoL9QBoopYx3wbXFSUCSOJoB6e0Xy26jdL1JoEXhTcre928BzXvp3nV18LSv4tkSGt1yS5SeQB9eEjqEImGdV', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-07-10 12:30:28', '2020-07-10 12:30:28', NULL),
+(16, 2, 'Gautam', '', 'gautam@gmail.com', NULL, NULL, '$2y$10$7uZuLnAbX/2Wej0fEjD3nutPyF34JH7XCctv4gOcs5o2K6AkEf8Ga', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-23 17:30:32', '2020-07-23 17:30:32', NULL),
+(17, 3, 'Bhavin', '', 'bhavin@gmail.com', NULL, NULL, '$2y$10$Yyf2olh9NiwAB64E7Gcz/.vKURZNjNQuwpxoUy0/C/PLfoC9PdSIu', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, 'trainer/Images/1595507023person.png', 'trainer/Images/1595507023pexels-photo-210019.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-23 17:53:43', '2020-07-23 17:53:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -526,7 +618,7 @@ CREATE TABLE `user_trainer_activity` (
 --
 
 INSERT INTO `user_trainer_activity` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '[\"3\",\"4\",\"9\",\"5\",\"2\"]', '2020-07-02 17:35:57', '2020-07-02 17:35:57');
+(1, '[\"3\",\"4\",\"5\"]', '2020-07-02 17:35:57', '2020-07-02 17:35:57');
 
 --
 -- Indexes for dumped tables
@@ -537,6 +629,12 @@ INSERT INTO `user_trainer_activity` (`id`, `user_id`, `created_at`, `updated_at`
 --
 ALTER TABLE `about_us`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -631,6 +729,18 @@ ALTER TABLE `trainer_categories`
   ADD PRIMARY KEY (`trainer_cat_id`);
 
 --
+-- Indexes for table `trainer_price_management`
+--
+ALTER TABLE `trainer_price_management`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `trainer_setting`
+--
+ALTER TABLE `trainer_setting`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -654,6 +764,12 @@ ALTER TABLE `about_us`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -675,7 +791,7 @@ ALTER TABLE `durations`
 -- AUTO_INCREMENT for table `e-shop`
 --
 ALTER TABLE `e-shop`
-  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `event`
@@ -693,7 +809,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `feesmanagement`
 --
 ALTER TABLE `feesmanagement`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -741,13 +857,25 @@ ALTER TABLE `subscription_plan`
 -- AUTO_INCREMENT for table `trainer_categories`
 --
 ALTER TABLE `trainer_categories`
-  MODIFY `trainer_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `trainer_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `trainer_price_management`
+--
+ALTER TABLE `trainer_price_management`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `trainer_setting`
+--
+ALTER TABLE `trainer_setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_trainer_activity`
