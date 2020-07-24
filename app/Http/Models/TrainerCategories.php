@@ -107,4 +107,8 @@ class TrainerCategories extends Model
 		}
 		return false;
 	}
+
+	public function price_trainer(){
+		return $this->belongsTo('App\Http\Models\TrainerPrice','skils','trainer_cat_id');
+	}
 }

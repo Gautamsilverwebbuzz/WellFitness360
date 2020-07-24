@@ -37,6 +37,12 @@ $RolePermission = [];
 						<a href="{{ route('/trainer/dashboard') }}"><i class="fa fa-home"></i>Dashborad</a>
 					</li>
 
+					<li class="{{ (request()->is('trainer/price')) ? 'current-page': ''  }}">
+						<a href="{{ url('trainer/price') }}">
+						<i class="fa fa-money" aria-hidden="true"></i>Price Management
+						</a>
+					</li>
+
 					<li class="{{ (request()->is('trainer/setting')) ? 'current-page': ''  }}">
 						<a href="{{ route('trainer/setting') }}">
 						<i class="fa fa-cog"></i>@lang('backend/sidebar.setting')

@@ -107,7 +107,6 @@ class DashboardController extends Controller
 			$trainerprofile = User::where('id',$user_id)->first()->toArray();
 			$trainerskils =  ($trainerprofile['trainer_skils']) ? json_decode($trainerprofile['trainer_skils']) : [];
 			$catid = 0;
-			$trainerprofile1 = '';
 			$showcat = $this->Categories->get_trainer_skils($catid,$trainerskils);
 			return view('trainer.profile',compact('trainerprofile','showcat'));
 		}

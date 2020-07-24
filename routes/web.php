@@ -138,13 +138,16 @@ Route::match(['GET', 'POST'], '/forgetPassword', 'ForgotPasswordController@forge
 Route::match(['GET', 'POST'], '/resetPassword', 'ForgotPasswordController@resetPassword')->name('/resetPassword');
 
 Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => 'Trainer'], function () {
-	/*Trainer */
+	/*Trainer START*/
 	Route::get('/trainer/dashboard', 'DashboardController@index')->name('/trainer/dashboard');
 	Route::match(['GET', 'POST'], '/trainer/changePassword', 'DashboardController@changePassword')->name('/trainer/changePassword');
 	Route::match(['GET', 'POST'], '/trainer/profile', 'DashboardController@trainerProfile')->name('/trainer/profile');
 	Route::match(['GET', 'POST'], 'trainer/setting', 'SettingController@trainerSetting')->name('trainer/setting');
 	Route::match(['GET', 'POST'], 'trainer/setting/update', 'SettingController@update')->name('trainer/setting/update');
-	/*Trainer*/
-});
 
+	/*Price Management Trainer*/
+	Route::get('trainer/price/delete/{id}', 'PriceController@destroy');
+	Route::resource('trainer/price', 'PriceController');
+	/*Trainer END*/
+});
 /* Front Route END*/

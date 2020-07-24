@@ -237,4 +237,68 @@ $(document).ready(function() {
 			},
 		},
 	});
+
+	$('#priceform').validate({
+		rules: {
+			title:{
+				required:true,
+			},
+			categoryList:{
+				required:true,
+			},
+			price:{
+				required:true,
+				number:true,
+			},
+			duration:{
+				required:true,
+			},
+		},
+		messages: {
+			title:{
+				required:'Please enter title.',
+			},
+			categoryList:{
+				required:"Please selecr skils.",
+			},
+			price:{
+				required:"Please enter price.",
+				number:"Please enter valid price.",
+			},
+			duration:{
+				required:"Please enter duration.",
+			},
+		},
+	});
+
+	/** USE : Delete Trainer Price */
+	$(document).on("click",".deletTrainerPrice",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/trainer/price/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					if(object.status){
+						toastr.success(object.message);
+						location.reload(true);
+					}else{
+						toastr.error(object.message);
+					}
+				}
+			});
+		}
+		else{
+			return false;
+		}
+	});
+
+
+
+
+
 });
