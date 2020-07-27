@@ -13,7 +13,7 @@ $(document).ready(function() {
 	if($("#skils").length){
 		$("#skils").select2({
 			placeholder: "Select a Skils",
-    		allowClear: true
+			allowClear: true
 		});
 	}
 	/*Profile Page*/
@@ -297,8 +297,111 @@ $(document).ready(function() {
 		}
 	});
 
+	/*Chat Js START*/
+	/**
+	* USE : Get message
+	*/
+	
+	/*Send message*/
+	$('.msg_send_btn').on('click', function() {
+		var toUserId = $(this).attr('toUserId');
+		$.ajax({
+			type:'POST',
+			url: BASE_URL+'/trainer/sendMessage',
+			data:{
+				'_token': $('meta[name="csrf-token"]').attr('content'),
+				toUserId : toUserId,
+				message : $('.write_msg').val(),
+			},
+			success:function(data){
+				if(data.status){
+					$('#write_msg').val('');
+					userChatHistory(toUserId);
+					EnabledSendButton();
+				}
+			}
+		});
+	});
 
+	const messages = document.getElementById('msg_history');
+	if($("#msg_history").length){
+		var toUserId = $('.msg_send_btn').attr('toUserId');
+		//setInterval(notification, 5000);
+		//setInterval(function(){userChatHistory(toUserId)}, 5000);
+	}
 
+	$('.chat_list').on('click', function() {
+		$('.chat_list').removeClass('active_chat');
+		$(this).addClass('active_chat');
+		var fromUserId = $(this).attr('id');
+		var propertyContentId = $(this).attr('propertyContentId');
 
-
+		$.ajax({
+			type:'POST',
+			url: BASE_URL+'/trainer/updateCountMessage',
+			data:{
+				'_token': $('meta[name="csrf-token"]').attr('content'),
+				fromUserId : fromUserId,
+				propertyContentId : propertyContentId,
+			},
+			success:function(data){
+				if(data.status){
+					if(data.countMessage){
+						$('.messageCount').html(data.countMessage);
+					}else{
+						$('.messageCount').html('');
+					}
+					messages.scrollTop = messages.scrollHeight;
+				}
+			}
+		});
+		//userChatHistory(fromUserId,propertyContentId);
+	});
+	/*Chat Js END*/
 });
+
+function notification(){
+	$.ajax({
+		type:'GET',
+		url: BASE_URL+'/trainer/notification',
+		success:function(data){
+			$('.messageList').html(data.html);
+			if(data.messageCount){
+				$('.countNotification').html(data.messageCount);
+			}else{
+				$('.countNotification').html('');
+			}
+
+			setTimeout(function(){notification();}, 5000);
+		}
+	});
+}
+
+function userChatHistory(toUserId){
+	const messages = document.getElementById('msg_history');
+	$.ajax({
+		type:'POST',
+		url: BASE_URL+'/trainer/userChat',
+		data:{
+			'_token': $('meta[name="csrf-token"]').attr('content'),
+			toUserId : toUserId,
+		},
+		success:function(data){
+			if(data.status){
+				$('.msg_history').html(data.chatHtml);
+				messages.scrollTop = messages.scrollHeight;
+				$('.person-chat-info').html(data.headerHtml);
+				$('.msg_send_btn').attr('toUserId',data.headerData.user_id);
+			}
+		}
+	});
+}
+
+
+function EnabledSendButton() {
+	if(document.getElementById("write_msg").value==="") {
+		document.getElementById('msg_send_btn').disabled = true;
+	} else {
+		document.getElementById('msg_send_btn').disabled = false;
+	}
+}

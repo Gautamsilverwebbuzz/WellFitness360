@@ -43,6 +43,12 @@ $RolePermission = [];
 						</a>
 					</li>
 
+					<li class="{{ (request()->is('trainer/chat')) ? 'current-page': ''  }}">
+						<a href="{{ url('trainer/chat') }}">
+						<i class="fa fa-comments-o" aria-hidden="true"></i>Chat
+						</a>
+					</li>
+
 					<li class="{{ (request()->is('trainer/setting')) ? 'current-page': ''  }}">
 						<a href="{{ route('trainer/setting') }}">
 						<i class="fa fa-cog"></i>@lang('backend/sidebar.setting')

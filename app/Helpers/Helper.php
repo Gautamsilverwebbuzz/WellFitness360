@@ -5,21 +5,11 @@ namespace App\Helpers;
 use App\Http\Models\RolePermission;
 use DB;
 use Illuminate\Support\Facades\Mail;
+use App\User;
 
 class Helper{
 
-	/**
-	 * USE : Get user data
-	 */
-	public static function getUserData($userId){
-		$result = DB::table('users')->select('*')->where('id',$userId)->first();
-		if($result){
-			return $result;
-		}else{
-			return false;
-		}
-	}
-
+	
 	/**
 	 * USE : Get User Permissions
 	 */
@@ -53,5 +43,14 @@ class Helper{
 		// $msg->from('krupavyas221@gmail.com', 'Y-Fobs');
 		// $msg->to($data['client_data']->email)->subject('Invoice');
 		// $msg->attachData($pdf->output(),'Invoice_'.rand().'.pdf');
+	}
+
+	public static function getUserData($id){
+		$result = User::where('id',$id)->get()->toArray();
+		if($result){
+			return $result;
+		}else{
+			return false;
+		}
 	}
 }

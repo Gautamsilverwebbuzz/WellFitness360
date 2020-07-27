@@ -144,10 +144,17 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	Route::match(['GET', 'POST'], '/trainer/profile', 'DashboardController@trainerProfile')->name('/trainer/profile');
 	Route::match(['GET', 'POST'], 'trainer/setting', 'SettingController@trainerSetting')->name('trainer/setting');
 	Route::match(['GET', 'POST'], 'trainer/setting/update', 'SettingController@update')->name('trainer/setting/update');
-
 	/*Price Management Trainer*/
 	Route::get('trainer/price/delete/{id}', 'PriceController@destroy');
 	Route::resource('trainer/price', 'PriceController');
 	/*Trainer END*/
+	/*Traine Chat START*/
+	Route::get('trainer/chat','MessagesController@index')->name('trainer/chat');
+	Route::post('trainer/sendMessage','MessagesController@sendMessage')->name('trainer/sendMessage');
+	Route::post('trainer/userChat','MessagesController@userChat');
+	Route::post('trainer/updateCountMessage','MessagesController@updateCountMessage')->name('trainer/updateCountMessage');
+	Route::get('trainer/notification','MessagesController@getNotification');
+	/*Traine Chat END*/
+
 });
 /* Front Route END*/
