@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2020 at 03:48 PM
+-- Generation Time: Jul 29, 2020 at 10:53 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -440,6 +440,22 @@ INSERT INTO `subscription_plan` (`id`, `Title`, `Amount`, `Duration_id`, `Status
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trainer_availability`
+--
+
+CREATE TABLE `trainer_availability` (
+  `id` int(11) NOT NULL,
+  `trainer_id` int(11) NOT NULL,
+  `time_slot` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trainer_categories`
 --
 
@@ -590,15 +606,84 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `sur_name`, `email`, `gender`, `co
 (1, 1, 'Admin', NULL, 'admin@admin.com', '1', NULL, '$2y$10$ix5TRm60.oQ6A2O/hXU3e.HAA3NWGzo3mXR2toGQee21O2.8yE5X2', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'cnZGJRPgbh1vlZWJijqD7qPLZGuZ5bytRvNuxtom410o5c8YZx678LpoOl62UpIYQdZClzpQnUsS3aqKrw81puU7CLgBbYLAvuwh8aA3xGlSmEuOPRpbemlP', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-05-09 08:29:33', '2020-07-16 10:53:03', NULL),
 (2, 2, 'Manoj', 'Prajapati', 'manoj1@silverwebbuzz.com', 'Male', '8785458754', '$2y$10$ix5TRm60.oQ6A2O/hXU3e.HAA3NWGzo3mXR2toGQee21O2.8yE5X2', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-05-09 22:57:38', '2020-06-17 11:25:02', NULL),
 (3, 2, 'Bhavin', 'Patel', 'bhavin@silverwebbuzz.com', 'Male', '7887884574', '$2y$10$KD2w8dXIaS.2zl3ZLoh83uY82ANdRJu18ObqX3kqy3TthI0lZ4Mdm', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-05-10 02:23:43', '2020-07-02 16:11:17', NULL),
-(4, 3, 'Gautam', 'Patel', 'gautam@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$VxrxXVS97ciVxWxlT.jj.u4w/nMIvRZxFiv3Nyj1jGMAS7hqSRfrq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'trainer/Images/1595480497pexels-photo-210019.jpeg', NULL, NULL, 1, NULL, 'J81bV6p8BfaYPbG8JyBLGXYCOdWCKn4uO2Bo7rED7YK9OC5TB5KGKUxdMjL3W75Mx0ZZ9HB5kZfli1atC2NDGAdPMlg6UQQCE5lnW4HMYDlavDcJF3EKBq0M', '1', '[\"1\",\"2\",\"10\",\"19\",\"22\",\"30\",\"34\"]', NULL, NULL, 20, '1', '28', 'Intermediate', '<p>dsfds</p>', '<p>fds</p>', '<ol>\r\n	<li>fdsfds</li>\r\n	<li>fdsf</li>\r\n	<li>fds</li>\r\n	<li>fds</li>\r\n	<li>fsd</li>\r\n</ol>', 1, '2020-05-12 05:52:50', '2020-07-23 12:51:39', NULL),
-(5, 3, 'Sachin', 'Suthar', 'bgautamp.gp912@gmail.com', 'Female', '7845124578', '$2y$10$BoS3GuP27GmXZvcOH.UP7OxmwlBPLHX4OIK7I2DaiC3MWvxFbGQG6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'uGXeOsqLtE84G84KXp4iKO7SlN8EYVec818lX5YJvgaJpCGYVwwfw894Zy1kGdk98PyRkYUsWKJL1NA7GOjwEABSPiITKwihkRnLy3r1DFJsusZ7jbDnfrcd', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-05-12 05:54:14', '2020-07-16 10:54:36', NULL),
-(9, 3, 'Hiral', 'Suthar', 'hiral@silverwebbuzz.com', 'Male', '7875457854', '$2y$10$FSjiWi.g1jEEoo0A4PVxrORCF1yKxmbU68biRAxooMR.FZy.s8Zxe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-06-03 16:18:45', '2020-07-08 15:44:38', NULL),
+(4, 3, 'Gautam', 'Patel', 'gautam@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$VxrxXVS97ciVxWxlT.jj.u4w/nMIvRZxFiv3Nyj1jGMAS7hqSRfrq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'profile/1595480497pexels-photo-210019.jpeg', NULL, NULL, 1, NULL, 'J81bV6p8BfaYPbG8JyBLGXYCOdWCKn4uO2Bo7rED7YK9OC5TB5KGKUxdMjL3W75Mx0ZZ9HB5kZfli1atC2NDGAdPMlg6UQQCE5lnW4HMYDlavDcJF3EKBq0M', '1', '[\"1\",\"2\",\"10\",\"19\",\"22\",\"30\",\"34\"]', NULL, NULL, 20, '1', '28', 'Intermediate', '<p>dsfds</p>', '<p>fds</p>', '<ol>\r\n	<li>fdsfds</li>\r\n	<li>fdsf</li>\r\n	<li>fds</li>\r\n	<li>fds</li>\r\n	<li>fsd</li>\r\n</ol>', 1, '2020-05-12 05:52:50', '2020-07-23 12:51:39', NULL),
+(5, 3, 'Sachin', 'Suthar', 'bgautamp.gp912@gmail.com', 'Female', '7845124578', '$2y$10$VxrxXVS97ciVxWxlT.jj.u4w/nMIvRZxFiv3Nyj1jGMAS7hqSRfrq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'trainer/Images/1595932103person.png', NULL, NULL, 1, NULL, 'uGXeOsqLtE84G84KXp4iKO7SlN8EYVec818lX5YJvgaJpCGYVwwfw894Zy1kGdk98PyRkYUsWKJL1NA7GOjwEABSPiITKwihkRnLy3r1DFJsusZ7jbDnfrcd', '1', '[\"2\",\"4\"]', NULL, NULL, 28, '1', '29', 'Beginner', '<p>ads</p>', '<p>das</p>', '<p>dasd</p>', 1, '2020-05-12 05:54:14', '2020-07-28 15:58:23', NULL),
+(9, 3, 'Hiral', 'Suthar', 'hiral@silverwebbuzz.com', 'Male', '7875457854', '$2y$10$VxrxXVS97ciVxWxlT.jj.u4w/nMIvRZxFiv3Nyj1jGMAS7hqSRfrq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-06-03 16:18:45', '2020-07-08 15:44:38', NULL),
 (11, 2, 'Manoj', 'Prajapati', 'manoj@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$QXBoSue.YR1atrovd/Bg..4w4iAAs7x0eaMyLMk/mu9jupaiWCIS6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-17 07:13:54', 1, 'NwsVbcY4JbJKP2uwVeD6vl4xkoRCs3gmnKdA8J4OVWBLeydVNi5uvy5jhJOgYnrCmKA1xix8MJMCscVGLJXQ5W3e57cRsf03GMkmXoaSkzrtFoYZJDPDylw1', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-06-17 12:02:57', '2020-06-18 17:05:18', NULL),
 (12, 2, 'Sachin', 'Suthar', 'sachin@silverwebbuzz.com', 'Male', '7046587954', '$2y$10$xXJju5MhLwpUv01o3KY7ne/Iys26rPojtMnix5DrJ1/FaiNV86Wwe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-09 17:08:52', '2020-07-09 17:09:18', '2020-07-09 17:09:18'),
 (13, 3, 'Bhavin', 'Patel', 'bhavin78@silverwebbuzz.com', 'Male', '7845878979', '$2y$10$kPQRBdsyOzNAFUCd2u.kce6McL8LjKmktheaRVWD914/4p.5l1bnW', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-09 17:10:08', '2020-07-09 17:10:08', NULL),
 (14, 2, 'Test', 'test', 'testt@gmail.com', 'Male', '7879787897', '$2y$10$tnTjQ5KbTui.HUYrONAb/OqviKGdEtK1FeXNg7XwM71YtMrhpC1JO', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'pWgocZqWOhVaUdyP8roEhQbpzo1qJJyPY2mDoL9QBoopYx3wbXFSUCSOJoB6e0Xy26jdL1JoEXhTcre928BzXvp3nV18LSv4tkSGt1yS5SeQB9eEjqEImGdV', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-07-10 12:30:28', '2020-07-10 12:30:28', NULL),
 (16, 2, 'Gautam', '', 'gautam@gmail.com', NULL, NULL, '$2y$10$7uZuLnAbX/2Wej0fEjD3nutPyF34JH7XCctv4gOcs5o2K6AkEf8Ga', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-23 17:30:32', '2020-07-23 17:30:32', NULL),
 (17, 3, 'Bhavin', '', 'bhavin@gmail.com', NULL, NULL, '$2y$10$Yyf2olh9NiwAB64E7Gcz/.vKURZNjNQuwpxoUy0/C/PLfoC9PdSIu', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, 'trainer/Images/1595507023person.png', 'trainer/Images/1595507023pexels-photo-210019.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-07-23 17:53:43', '2020-07-23 17:53:43', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_chat_trainer`
+--
+
+CREATE TABLE `user_chat_trainer` (
+  `id` bigint(20) NOT NULL,
+  `property_content_id` bigint(20) DEFAULT NULL,
+  `from_user` bigint(20) NOT NULL,
+  `to_user` bigint(20) NOT NULL,
+  `message` longtext NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = unread, 1 = Read',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_chat_trainer`
+--
+
+INSERT INTO `user_chat_trainer` (`id`, `property_content_id`, `from_user`, `to_user`, `message`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 4, 2, 'hello panos', 1, '2020-07-06 07:34:19', '2020-07-06 19:34:41'),
+(2, 2, 4, 2, 'hello, how can I help you?', 1, '2020-07-06 07:34:40', '2020-07-27 17:16:46'),
+(3, 2, 4, 5, 'hello, how can I help you?', 1, '2020-07-27 07:34:40', '2020-07-28 15:57:43'),
+(4, NULL, 5, 4, 'Hii', 1, '2020-07-27 03:16:30', '2020-07-28 19:23:38'),
+(5, NULL, 4, 5, 'Hi', 1, '2020-07-27 03:28:04', '2020-07-28 15:57:43'),
+(6, NULL, 5, 4, 'How are you\r\n', 1, '2020-07-27 03:28:04', '2020-07-28 19:23:38'),
+(7, NULL, 4, 5, 'Hi', 1, '2020-07-27 03:56:38', '2020-07-28 15:57:43'),
+(8, NULL, 4, 5, 'How can i help', 1, '2020-07-27 04:00:29', '2020-07-28 15:57:43'),
+(9, NULL, 4, 5, 'Yes', 1, '2020-07-27 04:01:24', '2020-07-28 15:57:43'),
+(10, NULL, 5, 4, 'I have workout for yoga', 1, '2020-07-27 04:02:47', '2020-07-28 19:23:38'),
+(11, NULL, 5, 4, 'Hi', 1, '2020-07-27 05:22:08', '2020-07-28 19:23:38'),
+(12, NULL, 4, 5, 'Hii', 1, '2020-07-27 05:29:18', '2020-07-28 15:57:43'),
+(13, NULL, 4, 5, 'Hi', 1, '2020-07-27 05:32:12', '2020-07-28 15:57:43'),
+(14, NULL, 5, 4, 'dsadsadsa', 1, '2020-07-27 05:33:13', '2020-07-28 19:23:38'),
+(15, NULL, 4, 5, 'Hi', 1, '2020-07-27 05:40:44', '2020-07-28 15:57:43'),
+(16, NULL, 4, 5, 'How are you', 1, '2020-07-27 05:41:13', '2020-07-28 15:57:43'),
+(17, NULL, 5, 4, 'I am fine and you', 1, '2020-07-27 05:41:23', '2020-07-28 19:23:38'),
+(18, NULL, 4, 5, 'Good', 1, '2020-07-27 05:41:32', '2020-07-28 15:57:43'),
+(19, NULL, 4, 5, 'Hii', 1, '2020-07-28 10:46:25', '2020-07-28 15:57:43'),
+(20, NULL, 4, 5, 'How are you', 1, '2020-07-28 11:00:13', '2020-07-28 15:57:43'),
+(21, NULL, 5, 4, 'Hii', 1, '2020-07-28 11:13:24', '2020-07-28 19:23:38'),
+(22, NULL, 4, 5, 'How are you', 1, '2020-07-28 11:26:11', '2020-07-28 15:57:43'),
+(23, NULL, 5, 4, 'Hiiiii', 1, '2020-07-28 11:26:36', '2020-07-28 19:23:38'),
+(24, NULL, 4, 5, 'fdsydsuyfgdsdsdsfs', 1, '2020-07-28 11:29:25', '2020-07-28 15:57:43'),
+(25, NULL, 4, 5, 'fdsfdsdsfsffsfdsf', 1, '2020-07-28 11:30:34', '2020-07-28 15:57:43'),
+(26, NULL, 5, 4, 'sadasdadsa', 1, '2020-07-28 11:30:39', '2020-07-28 19:23:38'),
+(27, NULL, 4, 5, 'werewrwewer', 1, '2020-07-28 11:30:47', '2020-07-28 15:57:43'),
+(28, NULL, 5, 4, 'qweqweqeqw', 1, '2020-07-28 11:30:49', '2020-07-28 19:23:38'),
+(29, NULL, 4, 5, '1312323123123', 1, '2020-07-28 11:30:58', '2020-07-28 15:57:43'),
+(30, NULL, 5, 4, 'adsddadadsa', 1, '2020-07-28 11:31:00', '2020-07-28 19:23:38'),
+(31, NULL, 4, 5, 'sadsa', 1, '2020-07-28 11:46:55', '2020-07-28 15:57:43'),
+(32, NULL, 4, 5, 'fdg', 1, '2020-07-28 11:48:12', '2020-07-28 15:57:43'),
+(33, NULL, 4, 5, 'sdfsds', 1, '2020-07-28 11:49:21', '2020-07-28 15:57:43'),
+(34, NULL, 4, 5, 'dfsfd', 1, '2020-07-28 11:51:21', '2020-07-28 15:57:43'),
+(35, NULL, 5, 4, 'sdfdsf', 1, '2020-07-28 11:51:46', '2020-07-28 19:23:38'),
+(36, NULL, 4, 5, 'Hii', 1, '2020-07-28 12:30:15', '2020-07-28 15:57:43'),
+(37, NULL, 4, 5, 'sdfsdfds', 1, '2020-07-28 02:47:03', '2020-07-28 15:57:43'),
+(38, NULL, 4, 5, 'adssa', 1, '2020-07-28 02:48:31', '2020-07-28 15:57:43'),
+(39, NULL, 5, 4, 'qweqwqw', 1, '2020-07-28 02:48:41', '2020-07-28 19:23:38'),
+(40, NULL, 5, 4, 'asdsdasa', 1, '2020-07-28 02:49:07', '2020-07-28 19:23:38'),
+(41, NULL, 4, 5, 'qweqw', 1, '2020-07-28 02:49:14', '2020-07-28 15:57:43'),
+(42, NULL, 5, 4, 'asdsa', 1, '2020-07-28 02:49:15', '2020-07-28 19:23:38'),
+(43, NULL, 4, 5, 'asdsad', 1, '2020-07-28 03:09:56', '2020-07-28 15:57:43'),
+(44, NULL, 5, 4, 'asddsadsad', 1, '2020-07-28 03:09:59', '2020-07-28 19:23:38'),
+(45, NULL, 4, 5, 'asd', 1, '2020-07-28 03:10:11', '2020-07-28 15:57:43'),
+(46, NULL, 4, 2, 'sfdsfs', 0, '2020-07-28 03:12:01', '2020-07-28 03:12:01');
 
 -- --------------------------------------------------------
 
@@ -723,6 +808,12 @@ ALTER TABLE `subscription_plan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `trainer_availability`
+--
+ALTER TABLE `trainer_availability`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `trainer_categories`
 --
 ALTER TABLE `trainer_categories`
@@ -746,6 +837,12 @@ ALTER TABLE `trainer_setting`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
+
+--
+-- Indexes for table `user_chat_trainer`
+--
+ALTER TABLE `user_chat_trainer`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_trainer_activity`
@@ -854,6 +951,12 @@ ALTER TABLE `subscription_plan`
   MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `trainer_availability`
+--
+ALTER TABLE `trainer_availability`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `trainer_categories`
 --
 ALTER TABLE `trainer_categories`
@@ -876,6 +979,12 @@ ALTER TABLE `trainer_setting`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `user_chat_trainer`
+--
+ALTER TABLE `user_chat_trainer`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `user_trainer_activity`

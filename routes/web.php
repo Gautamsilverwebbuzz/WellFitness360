@@ -154,6 +154,7 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	Route::post('trainer/userChat','MessagesController@userChat');
 	Route::post('trainer/updateCountMessage','MessagesController@updateCountMessage')->name('trainer/updateCountMessage');
 	Route::get('trainer/notification','MessagesController@getNotification');
+	Route::post('trainer/userList','MessagesController@userList')->name('trainer/userList');
 	/*Traine Chat END*/
 
 });

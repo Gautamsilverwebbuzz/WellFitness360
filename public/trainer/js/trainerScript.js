@@ -324,17 +324,18 @@ $(document).ready(function() {
 	});
 
 	const messages = document.getElementById('msg_history');
+	$('.msg_history').animate({scrollTop: $('.msg_history').get(0).scrollHeight}, 3000);
 	if($("#msg_history").length){
 		var toUserId = $('.msg_send_btn').attr('toUserId');
 		//setInterval(notification, 5000);
-		//setInterval(function(){userChatHistory(toUserId)}, 5000);
+		setInterval(sendRequest, 5000);
+		//setInterval(function(){userChatHistory(toUserId)}, 2000);
 	}
 
 	$('.chat_list').on('click', function() {
 		$('.chat_list').removeClass('active_chat');
 		$(this).addClass('active_chat');
 		var fromUserId = $(this).attr('id');
-		var propertyContentId = $(this).attr('propertyContentId');
 
 		$.ajax({
 			type:'POST',
@@ -342,7 +343,6 @@ $(document).ready(function() {
 			data:{
 				'_token': $('meta[name="csrf-token"]').attr('content'),
 				fromUserId : fromUserId,
-				propertyContentId : propertyContentId,
 			},
 			success:function(data){
 				if(data.status){
@@ -379,6 +379,13 @@ function notification(){
 
 function userChatHistory(toUserId){
 	const messages = document.getElementById('msg_history');
+	var chat_list = $(".chat_list").attr('id');
+	$(".chat_list").removeClass('active_chat');
+	if(chat_list == toUserId){
+		$(".chat_list").addClass('active_chat');
+	}else{
+		$(".chat_list").removeClass('active_chat');
+	}
 	$.ajax({
 		type:'POST',
 		url: BASE_URL+'/trainer/userChat',
@@ -388,15 +395,38 @@ function userChatHistory(toUserId){
 		},
 		success:function(data){
 			if(data.status){
-				$('.msg_history').html(data.chatHtml);
 				messages.scrollTop = messages.scrollHeight;
+				$('.msg_history').html(data.chatHtml);
 				$('.person-chat-info').html(data.headerHtml);
 				$('.msg_send_btn').attr('toUserId',data.headerData.user_id);
+				//setTimeout(function(){userChatHistory();}, 5000);
 			}
 		}
 	});
 }
 
+function sendRequest(){
+	const messages = document.getElementById('msg_history');
+	//var fromUserId = $('.msg_send_btn').attr('toUserId');
+	var toUserId = $(".active_chat ").attr('id');
+	$.ajax({
+		type:'POST',
+		url: BASE_URL+'/trainer/userList',
+		data:{
+			'_token': $('meta[name="csrf-token"]').attr('content'),
+			toUserId : toUserId,
+		},
+		success:function(data){
+			if(data.status){
+				$('.msg_history').html(data.chatHtml);
+				$('.person-chat-info').html(data.headerHtml);
+				$('.msg_send_btn').attr('toUserId',data.headerData.user_id);
+				messages.scrollTop = messages.scrollHeight;
+			}
+			//setTimeout(function(){sendRequest();}, 5000);
+		}
+	});
+};
 
 function EnabledSendButton() {
 	if(document.getElementById("write_msg").value==="") {

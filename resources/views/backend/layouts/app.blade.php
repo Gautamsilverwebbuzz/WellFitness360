@@ -33,6 +33,7 @@
 	<!-- <link href="{{ asset('backend/vendors/google-code-prettify/bin/prettify.min.css') }}" rel="stylesheet"> -->
 	<!-- Select2 -->
 	<link href="{{ asset('backend/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.compat.min.css" rel="stylesheet">
 	<!-- Switchery -->
 	<!-- <link href="{{ asset('backend/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet"> -->
 	<!-- starrr -->
@@ -126,6 +127,7 @@
 	<script src="{{ asset('backend/vendors/flot.curvedlines/curvedLines.js') }}"></script> -->
 	<!-- DateJS -->
 	<script src="{{ asset('backend/vendors/DateJS/build/date.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animations/2.1/js/animations.min.js"></script>
 	<!-- Datatables -->
 	<script src="{{ asset('backend/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('backend/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>

@@ -22,7 +22,7 @@
 										<div class="chat_ib">
 											<h5>{{ $users['name'] }}
 												@if($users['messageCount'])
-												<span class="messageCount">{{ $users['messageCount'] }}</span>
+													<span class="messageCount">{{ $users['messageCount'] }}</span>
 												@endif
 											</h5>
 										</div>
@@ -65,6 +65,7 @@
 								@endforeach
 							@endif
 						</div>
+						<input type="hidden" name="hiddenmsg" value="" id="hiddenmsg">
 						<div class="type_msg">
 							<div class="input_msg_write">
 								<input type="text" class="write_msg" id="write_msg" onkeyup="EnabledSendButton()" placeholder="Type a message" />

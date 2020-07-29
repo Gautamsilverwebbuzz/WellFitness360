@@ -42,7 +42,7 @@ class MessagesController extends Controller
 						$usersList[$key]['image'] = asset('/profile/user-profile.jpg');
 					}
 					$chatUserId = $fromUserData[0]['id'];
-					$headerData['user_id'] = $fromUserData[0]['id'];
+					$headerData['user_id'] = $chatUserId;
 					$headerData['name'] = ucfirst($fromUserData[0]['name']).' '.ucfirst($fromUserData[0]['sur_name']);
 					if(!empty($fromUserData[0]['social_profile_image'])){
 						$headerData['image'] = $$fromUserData[0]['social_profile_image'];
@@ -60,7 +60,7 @@ class MessagesController extends Controller
 						$chatData[$chatKey]['id'] = $chat['id'];
 						$chatData[$chatKey]['userId'] = $chat['userId'];
 						$chatData[$chatKey]['message'] = $chat['message'];
-						$chatData[$chatKey]['from_name'] = ucfirst($toUserData[0]['name']).' '.ucfirst($toUserData[0]['sur_name']);
+						$chatData[$chatKey]['from_name'] = ucfirst($chat['name']).' '.ucfirst($chat['sur_name']);
 						$chatData[$chatKey]['to_name'] = ucfirst($toUserData[0]['name']).' '.ucfirst($toUserData[0]['name']);
 						$chatData[$chatKey]['created_at'] = date('h:i a',strtotime($chat['created_at'])).' '.$this->checkDay($chat['created_at']);
 						$chatData[$chatKey]['dateMonth'] = date('d M',strtotime($chat['created_at']));
@@ -100,17 +100,16 @@ class MessagesController extends Controller
 			$toUserId = $request->toUserId;
 			$propertyContentId = $request->propertyContentId;
 			$chats = $this->UserChatTrainer->getMessageDeatil($userId,$toUserId);
-			$chatData = [];
+			$chatData = [];	
 			$headerData = [];
 			$headerHtml = '';
 			if($chats){
 				foreach($chats as $chatKey => $chat){
 					$toUserData = Helper::getUserData($chat['to_user']);
-					
 					$chatData[$chatKey]['id'] = $chat['id'];
 					$chatData[$chatKey]['userId'] = $chat['userId'];
-					$chatData[$chatKey]['message'] = $chat['message'];
-					$chatData[$chatKey]['from_name'] = ucfirst($toUserData[0]['name']).' '.ucfirst($toUserData[0]['sur_name']);
+					$chatData[$chatKey]	['message'] = $chat['message'];
+					$chatData[$chatKey]['from_name'] = ucfirst($chat['name']).' '.ucfirst($chat['sur_name']);
 					$chatData[$chatKey]['to_name'] = ucfirst($toUserData[0]['name']).' '.ucfirst($toUserData[0]['sur_name']);
 					$chatData[$chatKey]['created_at'] = date('h:i a',strtotime($chat['created_at'])).' '.$this->checkDay($chat['created_at']);
 					$chatData[$chatKey]['dateMonth'] = date('d M',strtotime($chat['created_at']));
@@ -120,14 +119,14 @@ class MessagesController extends Controller
 			$headerData['user_id'] = $fromUserData[0]['id'];
 			$headerData['name'] = ucfirst($fromUserData[0]['name']).' '.ucfirst($fromUserData[0]['sur_name']);
 			if(!empty($fromUserData[0]['social_profile_image'])){
-				$headerData['image'] = $$fromUserData[0]['social_profile_image'];
+				$headerData['image'] = $fromUserData[0]['social_profile_image'];
 			}elseif(!empty($fromUserData[0]['profile_image'])){
 				$headerData['image'] =asset($fromUserData[0]['profile_image']);//env('APP_URL').'public/profile/'.$fromUserData->profile_image;
 			}else{
 				$headerData['image'] = asset('/profile/user-profile.jpg');//env('APP_URL').'public/profile/user-profile.png';
 			}
 
-			$messageIds = UserChatTrainer::select('id')->where('to_user',$userId)->where('from_user',$toUserId)->get()->toArray();
+			$messageIds = UserChatTrainer::selectRaw('id')->where('to_user',$userId)->where('from_user',$toUserId)->get()->toArray();
 			$update = $this->UserChatTrainer->whereIn('id', $messageIds)->update(array('status' => 1));
 			$html = '';
 			if($chatData){
@@ -226,6 +225,81 @@ class MessagesController extends Controller
 			return response()->json(array('status' => 1,'html' => $html,'messageCount' => $messageCount));
 		}else{
 			return response()->json(array('status' => 0,'message' => 'Login first.'));
+		}
+	}
+
+	/**
+	 * USE : get all message and users list
+	 */
+	public function userList(Request $request){
+		$userId = Session::get('user')['user_id'];
+		if($userId){
+			$toUserId = $request->toUserId;
+			$propertyContentId = $request->propertyContentId;
+			$chats = $this->UserChatTrainer->getMessageDeatil($userId,$toUserId);
+			$chatData = [];	
+			$headerData = [];
+			$headerHtml = '';
+			if($chats){
+				foreach($chats as $chatKey => $chat){
+					$toUserData = Helper::getUserData($chat['to_user']);
+					$chatData[$chatKey]['id'] = $chat['id'];
+					$chatData[$chatKey]['userId'] = $chat['userId'];
+					$chatData[$chatKey]	['message'] = $chat['message'];
+					$chatData[$chatKey]['from_name'] = ucfirst($chat['name']).' '.ucfirst($chat['sur_name']);
+					$chatData[$chatKey]['to_name'] = ucfirst($toUserData[0]['name']).' '.ucfirst($toUserData[0]['sur_name']);
+					$chatData[$chatKey]['created_at'] = date('h:i a',strtotime($chat['created_at'])).' '.$this->checkDay($chat['created_at']);
+					$chatData[$chatKey]['dateMonth'] = date('d M',strtotime($chat['created_at']));
+				}
+			}
+			$fromUserData = Helper::getUserData($toUserId);
+			$headerData['user_id'] = $fromUserData[0]['id'];
+			$headerData['name'] = ucfirst($fromUserData[0]['name']).' '.ucfirst($fromUserData[0]['sur_name']);
+			if(!empty($fromUserData[0]['social_profile_image'])){
+				$headerData['image'] = $fromUserData[0]['social_profile_image'];
+			}elseif(!empty($fromUserData[0]['profile_image'])){
+				$headerData['image'] =asset($fromUserData[0]['profile_image']);//env('APP_URL').'public/profile/'.$fromUserData->profile_image;
+			}else{
+				$headerData['image'] = asset('/profile/user-profile.jpg');//env('APP_URL').'public/profile/user-profile.png';
+			}
+
+			$messageIds = UserChatTrainer::selectRaw('id')->where('to_user',$userId)->where('from_user',$toUserId)->get()->toArray();
+			$update = $this->UserChatTrainer->whereIn('id', $messageIds)->update(array('status' => 1));
+			$html = '';
+			if($chatData){
+				foreach($chatData as $chat){
+					if($userId === $chat['userId']){
+						$html .= '<div class="outgoing_msg">
+							<div class="sent_msg">
+							<p>'.$chat['message'].'</p>
+							<span class="time_date">'.$chat['created_at'].'    |    '.$chat["dateMonth"].'</span> </div>
+						</div>';
+					}else{
+						$html .= '<div class="incoming_msg">
+							<div class="incoming_msg_img"> <img src="'.$headerData['image'].'" alt=""> </div>
+							<div class="received_msg">
+							<div class="received_withd_msg">
+								<p>'.$chat['message'].'</p>
+								<span class="time_date">'.$chat['created_at'].'    |    '.$chat['dateMonth'].'</span>
+							</div>
+							</div>
+						</div>';
+					}
+				}
+			}
+
+			if($headerData){
+				$headerHtml .='<div class="person-icon">
+					<img src="'.$headerData['image'].'" alt="">
+					</div>
+					<div class="person-name">
+						<h3>'.$headerData['name'].'</h3>
+					</div>';
+			}
+
+			return response()->json(array('status' => 1, 'headerData' => $headerData, 'chatHtml' => $html, 'headerHtml' => $headerHtml));
+		}else{
+			return response()->json(array('status' => 0,'message' => 'Invalid User Token.'));
 		}
 	}
 
