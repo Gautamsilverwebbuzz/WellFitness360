@@ -55,8 +55,6 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	// Route::get('/trainer', 'DashboardController@index')->name('trainer');
 	Route::get('/admin/dashboard', 'DashboardController@index')->name('/admin/dashboard');
 	
-
-	
 	Route::get('admin/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('admin/user-trainer-activity');
 	Route::post('admin/save-user-trainer-activity', 'DashboardController@saveUserandTrainerActivity')->name('admin/save-user-trainer-activity');
 
@@ -147,7 +145,22 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	/*Price Management Trainer*/
 	Route::get('trainer/price/delete/{id}', 'PriceController@destroy');
 	Route::resource('trainer/price', 'PriceController');
+
+	Route::get('trainer/availability/delete/{id}', 'AvailabilityController@destroy');
+	Route::get('trainer/availability/edit/{id}', 'AvailabilityController@edit');
+	Route::match(['GET', 'POST'], 'trainer/availability/store', 'AvailabilityController@store')->name('trainer/availability/store');
+	Route::match(['GET', 'POST'], 'trainer/availability/update', 'AvailabilityController@update')->name('trainer/availability/update');
+	Route::resource('trainer/availability', 'AvailabilityController');
+
+	// Route::get('trainer/availability', 'AvailabilityController@index');
+	// Route::get('trainer/availability/create', 'AvailabilityController@create');
+	// Route::match(['GET', 'POST'], 'trainer/availability/store', 'AvailabilityController@store')->name('trainer/store');
+	// Route::get('trainer/availability/edit/{id}/', 'AvailabilityController@edit');
+	// Route::put('trainer/availability/update/{$id}', 'AvailabilityController@update')->name('trainer/availability/update/{$id}');
+	// Route::get('trainer/availabilit/delete/{id}', 'AvailabilityController@destroy');
+
 	/*Trainer END*/
+
 	/*Traine Chat START*/
 	Route::get('trainer/chat','MessagesController@index')->name('trainer/chat');
 	Route::post('trainer/sendMessage','MessagesController@sendMessage')->name('trainer/sendMessage');

@@ -35,14 +35,6 @@ class Helper{
 			$message->to($data['data']['email'],$data['data']['name'] ?? '');
 			$message->subject($data['data']['subject']);
 		});
-		// $sendMail = Mail::send('email.sendCredential',$data, function ($message) use ($data) {
-		// $message->to($data['email'],$data['name']);
-		// $message->subject($data['subject']);
-		//$message->from('manoj@silverwebbuzz.com',"WellFitness360");
-		// $pdf = PDF::loadView('admin/invoice/preview1',$data);
-		// $msg->from('krupavyas221@gmail.com', 'Y-Fobs');
-		// $msg->to($data['client_data']->email)->subject('Invoice');
-		// $msg->attachData($pdf->output(),'Invoice_'.rand().'.pdf');
 	}
 
 	public static function getUserData($id){

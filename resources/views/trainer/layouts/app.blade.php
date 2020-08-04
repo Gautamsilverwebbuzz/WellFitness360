@@ -22,6 +22,7 @@
 	{{-- End toster css --}}
 	<!-- Font Awesome -->
 	<link href="{{ asset('backend/css/jquery-ui.css') }}" rel="stylesheet">
+	<link href="{{ asset('backend/css/jquery.timepicker.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('backend/css/multiselect.css') }}" rel="stylesheet">
 	
 	<link href="{{ asset('backend/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -69,6 +70,7 @@
 	<script src="{{ asset('backend/js/jquery.validate.min.js') }}"></script>
 	<script src="{{ asset('backend/js/additional-methods.min.js') }}"></script>
 	<script src="{{ asset('backend/js/jquery-ui.js') }}"></script>
+	<script src="{{ asset('backend/js/jquery.timepicker.min.js') }}"></script>
 	<!-- Bootstrap -->
 	<script src="{{ asset('backend/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	{{-- Start Js-Tree & Lightcase confirm box --}}

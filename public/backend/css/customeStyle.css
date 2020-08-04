@@ -43,3 +43,19 @@ div.ms-options ul{
 .blog-cls{
 	width: 100%;
 }
+.timeavailability-cls {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #26b99a;
+}
+.ui-timepicker-standard{
+    z-index: 99999 !important;
+}
