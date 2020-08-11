@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Session;
+use Illuminate\Support\Str;
+use App\Helpers\Helper;
 
 class RegisterController extends Controller
 {
 	public function userregister(){
-		return view('frontend.userregister');
+		return view('Frontend.userregister');
 	}
 
 	public function registerUser(Request $request){
@@ -40,9 +43,11 @@ class RegisterController extends Controller
 		$user->status = "1";
 		$result = $user->save();
 		if($result){
-
+			$lastinser_id = $user['id'];
+			Session::put('user', ['user_id'=>$lastinser_id]);
+			return redirect('physique');
 		}else{
-
+			return redirect()->back();
 		}
 	}
 
@@ -105,10 +110,42 @@ class RegisterController extends Controller
 
 	public function Physique(Request $request){
 		if($request->isMethod('get')) {
-			return view('frontend.physique');
+			return view('Frontend.physique');
 		}
 		if($request->isMethod('post')) {
+			$id = !empty(Session::get('user')['user_id']) ? Session::get('user')['user_id'] : '';
+			if(!empty($id)){
+				$Physique = User::find($id);
+				$email = $Physique['email'];
+				$firstname = $Physique['name'];
+				$lastname = $Physique['sur_name'];
+				$Physique->age = $request->age;
+				$Physique->height = $request->height;
+				$Physique->weight = $request->weight;
+				$Physique->level = $request->level;
+				$Physique->gender = $request->gender;
+				$result =  $Physique->save();
+				if($result){
+					$remember_token = Str::random(120);
+					$data = array(
+						'name' => ucfirst(trim($firstname)).' '.ucfirst(trim($lastname)),
+						'email' => trim($email),
+						'subject' => "WellFit360 Account Verify",
+						'verifyUrl' => env('APP_URL').'/verifyAccount/',
+						'verifyToken' => $remember_token,
+					);
+					// Send email
+                    $sendMail = Helper::sendMail($data,'email.sendCredential');
+					Session::flush();
+					return Redirect('emailverifysend');
+				}else{
 
+				}
+			}
 		}
+	}
+
+	public function emailverifysend(){
+		return view('Frontend.emailverify');
 	}
 }

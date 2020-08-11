@@ -22,6 +22,9 @@ $(document).ready(function() {
 	if($('#date').length){
 		$('#date').datepicker({ minDate: 0 });
 	}
+	if($('#edit_date').length){
+		$('#edit_date').datepicker({ minDate: 0 });
+	}
 	if($('#start_time').length){
 		$('#start_time').timepicker({
 			timeFormat: 'H:mm',
@@ -32,16 +35,16 @@ $(document).ready(function() {
 			scrollbar: true,
 		});
 	}
-	if($('#end_time').length){
-		$('#end_time').timepicker({
-			timeFormat: 'H:mm',
-			interval: 60,
-			minTime: '1',
-			dynamic: false,
-			dropdown: true,
-			scrollbar: true,
-		});
-	}
+	// if($('#end_time').length){
+	// 	$('#end_time').timepicker({
+	// 		timeFormat: 'H:mm',
+	// 		interval: 60,
+	// 		minTime: '1',
+	// 		dynamic: false,
+	// 		dropdown: true,
+	// 		scrollbar: true,
+	// 	});
+	// }
 	if($('#edit_start_time').length){
 		$('#edit_start_time').timepicker({
 			timeFormat: 'H:mm',
@@ -52,16 +55,37 @@ $(document).ready(function() {
 			scrollbar: true,
 		});
 	}
-	if($('#edit_end_time').length){
-		$('#edit_end_time').timepicker({
-			timeFormat: 'H:mm',
-			interval: 60,
-			minTime: '1',
-			dynamic: false,
-			dropdown: true,
-			scrollbar: true,
+	// if($('#edit_end_time').length){
+	// 	$('#edit_end_time').timepicker({
+	// 		timeFormat: 'H:mm',
+	// 		interval: 60,
+	// 		minTime: '1',
+	// 		dynamic: false,
+	// 		dropdown: true,
+	// 		scrollbar: true,
+	// 	});
+	// }
+
+	if($('#serach_date').length){
+		$("#serach_date").datepicker({
+			onSelect: function(date, instance) {
+				$("#cover-spin").show();
+				$.ajax({
+					url  : BASE_URL+'/trainer/availability/serach-availability',
+					type : 'POST',
+					data : {
+						"serachdate" : date,
+						'_token': $('meta[name="csrf-token"]').attr('content'),
+					},
+					success : function(response) {
+						$('.serach-availability-cls').html(response);
+						$(".trainer-avali-cls").hide();
+					}
+				});
+			}
 		});
 	}
+
 	/*Profile Page*/
 
 	$( "#trainerlogin" ).validate({
@@ -410,21 +434,54 @@ $(document).ready(function() {
 			type:'GET',
 			url: BASE_URL+'/trainer/availability/edit/'+id,
 			success:function(response){
-				$('#edit_start_time').val(response.start_time)
-				$('#edit_end_time').val(response.end_time)
-				$('#edit_availability').modal();
-				$('#editavailabilityForm').attr('data-id',id);
+				$('#edit_start_time').val(response[0]['start_time']);
+				$('#edit_category').val(response[0]['cat_id']);
+				$('#edit_duration').val(response[0]['duration']);
+				$('#edit_price').val(response[0]['price']);
+				$('#edit_date').val(response[0]['date']);
+				$('#action_availability').modal();
+				$('#avail_id').val(id);
 			}
 		});
 	});
 
+	$(document).on('click', '.edit-btn', function() {
+		$('#edit_availability').modal();
+		$("#action_availability").hide();
+		$(".modal-backdrop").removeClass();
+	});
 
+	$(document).on('click', '.delete-btn', function() {
+		var id = $('#avail_id').val();
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/trainer/availability/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").hide();
+					var data = JSON.parse(JSON.stringify(response));
+					$("#action_availability").hide();
+					$(".modal-backdrop").removeClass();
+					if(data.status){
+						toastr.success(data.message);
+						location.reload();
+					}else{
+						toastr.error(data.message);
+					}
+				}
+			});
+		}else{
+			return false
+		}
+	});
+	
 	$( "#availabilityForm" ).validate({
 		rules: {
 			start_time: {
 				required: true,
 			},
-			end_time: {
+			date:{
 				required: true,
 			},
 			category:{
@@ -433,7 +490,7 @@ $(document).ready(function() {
 			duration:{
 				required: true,
 			},
-			Price:{
+			price:{
 				required: true,
 				number: true,
 			},
@@ -442,8 +499,8 @@ $(document).ready(function() {
 			start_time: {
 				required: 'Please select start time.',
 			},
-			end_time: {
-				required: 'Please select end time.',
+			date:{
+				required: "Please select date.",
 			},
 			category:{
 				required: "Please select category.",
@@ -451,7 +508,7 @@ $(document).ready(function() {
 			duration:{
 				required: "Please enter duration.",
 			},
-			Price:{
+			price:{
 				required: "Please enter price.",
 				number: "Please enter valid price.",
 			},
@@ -461,11 +518,7 @@ $(document).ready(function() {
 			$.ajax({
 				url  : BASE_URL+'/trainer/availability/store',
 				type : 'POST',
-				data : {
-					'start_time':$("#start_time").val(),
-					'end_time':$("#end_time").val(),
-					'_token': $('meta[name="csrf-token"]').attr('content'),
-				},
+				data : $('#availabilityForm').serialize(),
 				success : function(response) {
 					$("#cover-spin").hide();
 					var data = JSON.parse(JSON.stringify(response));
@@ -482,20 +535,42 @@ $(document).ready(function() {
 
 	$( "#editavailabilityForm" ).validate({
 		rules: {
-			start_time: {
+			edit_start_time: {
 				required: true,
 			},
-			end_time: {
+			edit_date:{
 				required: true,
-			}
+			},
+			edit_category:{
+				required: true,
+			},
+			edit_duration:{
+				required: true,
+			},
+			edit_price:{
+				required: true,
+				number: true,
+			},
+			
 		},
 		messages: {
-			start_time: {
+			edit_start_time: {
 				required: 'Please select start time.',
 			},
-			end_time: {
-				required: 'Please select end time.',
-			}
+			edit_date:{
+				required: "Please select date.",
+			},
+			edit_category:{
+				required: "Please select category.",
+			},
+			edit_duration:{
+				required: "Please select duration.",
+			},
+			edit_price:{
+				required: "Please enter price.",
+				number: "Please enter valid price.",
+			},
+			
 		},
 		submitHandler: function (form) {
 			$("#cover-spin").show();
@@ -503,12 +578,7 @@ $(document).ready(function() {
 			$.ajax({
 				url  : BASE_URL+'/trainer/availability/update',
 				type : 'POST',
-				data : {
-					'start_time':$("#edit_start_time").val(),
-					'end_time':$("#edit_end_time").val(),
-					'id':id,
-					'_token': $('meta[name="csrf-token"]').attr('content'),
-				},
+				data : $('#editavailabilityForm').serialize(),
 				success : function(response) {
 					$("#cover-spin").hide();
 					var data = JSON.parse(JSON.stringify(response));

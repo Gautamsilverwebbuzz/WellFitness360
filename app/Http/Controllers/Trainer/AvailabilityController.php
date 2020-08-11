@@ -20,7 +20,7 @@ class AvailabilityController extends Controller
 	public function index()
 	{
 		$user_id = Session::get('user')['user_id'];
-		$trainerAvailabilitys = TrainerAvailability::where('trainer_id',$user_id)->orderBy('created_at','ASC')->get()->toArray();
+		$trainerAvailabilitys = TrainerAvailability::where('trainer_id',$user_id)->where('date',date('Y-m-d'))->get()->toArray();
 		$user = User::selectRaw('trainer_skils')->where("id",$user_id)->first()->toArray();
 		$trainer_skils = $user['trainer_skils'];
 		$skils = json_decode($trainer_skils);
@@ -53,26 +53,38 @@ class AvailabilityController extends Controller
 	{
 		$rules = [
 			'start_time' => 'required',
-			'end_time' => 'required',
+			//'end_time' => 'required',
 		];
 
 		$message = [
 			'start_time.required' => 'Please select start time.',
-			'end_time.required' => 'Please select end time.',
+			//'end_time.required' => 'Please select end time.',
 		];
 
 		if($this->validate($request, $rules, $message) === FALSE){
 			return redirect()->back()->withInput();
 		}
-
 		$user_id = Session::get('user')['user_id'];
 		$trainerAvailability = new TrainerAvailability;
 		$start_time = $request->start_time;
-		$end_time = $request->end_time;
+		$duration = $request->duration;
+		if($duration == "15"){
+			$durationtime = date("H:i", strtotime($start_time." + 15 minutes"));
+		}else if($duration == "30"){
+			$durationtime = date("H:i", strtotime($start_time." + 30 minutes"));
+		}else if($duration == "45"){
+			$durationtime = date("H:i", strtotime($start_time." + 45 minutes"));
+		}else{
+			$durationtime = date("H:i", strtotime($start_time." + 1 hour"));
+		}
+		$end_time = $request->durationtime;
 		$trainerAvailability->trainer_id = $user_id;
 		$trainerAvailability->start_time = $start_time;
-		$trainerAvailability->end_time = $end_time;
-		//$trainerAvailability->date = date("Y-m-d",strtotime($request->date));
+		$trainerAvailability->end_time = $durationtime;
+		$trainerAvailability->cat_id = $request->category;
+		$trainerAvailability->duration = $request->duration;
+		$trainerAvailability->price = $request->price;
+		$trainerAvailability->date = date("Y-m-d",strtotime($request->date));
 		$result = $trainerAvailability->save();
 		if($result){
 			$redirect = '/trainer/availability';
@@ -101,11 +113,17 @@ class AvailabilityController extends Controller
 	 */
 	public function edit($id)
 	{
-		$editAvailability = TrainerAvailability::where('id',$id)->first()->toArray();
-		$id = $editAvailability['id'];
-		$start_time = $editAvailability['start_time'];
-		$end_time = $editAvailability['end_time'];
-		return response()->json(array('id' => $id,'start_time'=>$start_time,'end_time' => $end_time));
+		$editAvailability = TrainerAvailability::where('id',$id)->first();
+		$availabilityarr = array(
+			'id'=>$editAvailability['id'],
+			'start_time'=>$editAvailability['start_time'],
+			'end_time'=>$editAvailability['end_time'],
+			'duration'=>$editAvailability['duration'],
+			'price'=>$editAvailability['price'],
+			'cat_id'=>$editAvailability['cat_id'],
+			'date'=>date('m/d/Y',strtotime($editAvailability['date'])),
+		);
+		return response()->json(array($availabilityarr));
 		//return view('trainer.availability.availability_edit',compact('editAvailability'));
 	}
 
@@ -118,13 +136,28 @@ class AvailabilityController extends Controller
 	 */
 	public function update(Request $request)
 	{
-		$id = $request->id;
-		$trainerAvailability = TrainerAvailability::find($id);
+		$id = $request->avail_id;
 		$user_id = Session::get('user')['user_id'];
+		$start_time = $request->edit_start_time;
+		$duration = $request->edit_duration;
+		if($duration == "15"){
+			$durationtime = date("H:i", strtotime($start_time." + 15 minutes"));
+		}else if($duration == "30"){
+			$durationtime = date("H:i", strtotime($start_time." + 30 minutes"));
+		}else if($duration == "45"){
+			$durationtime = date("H:i", strtotime($start_time." + 45 minutes"));
+		}else{
+			$durationtime = date("H:i", strtotime($start_time." + 1 hour"));
+		}
+		$end_time = $request->durationtime;
+		$trainerAvailability = TrainerAvailability::find($id);
 		$trainerAvailability->trainer_id = $user_id;
-		$trainerAvailability->start_time = $request->start_time;
-		$trainerAvailability->end_time = $request->end_time;
-		//$trainerAvailability->date = date("Y-m-d",strtotime($request->date));
+		$trainerAvailability->start_time = $start_time;
+		$trainerAvailability->end_time = $durationtime;
+		$trainerAvailability->cat_id = $request->edit_category;
+		$trainerAvailability->duration = $duration;
+		$trainerAvailability->price = $request->edit_price;
+		$trainerAvailability->date = date("Y-m-d",strtotime($request->edit_date));
 		$result = $trainerAvailability->save();
 		if($result){
 			$redirect = '/trainer/availability';
@@ -151,5 +184,19 @@ class AvailabilityController extends Controller
 			$status = false;
 		}
 		return response()->json(['status' => $status,'message' => $message]);
+	}
+
+	public function serachAvailability(Request $request){
+		$serachdate = date('Y-m-d',strtotime($request->serachdate));
+		$serachAvailabilitys = TrainerAvailability::where('date',$serachdate)->get()->toArray();
+		$html = '';
+		$html .='<div class="col-md-9">';
+			if($serachAvailabilitys){
+				foreach($serachAvailabilitys as $serachAvailability){
+					$html .='<a href="javascript:void(0);" class="timeavailability-cls" data-start="'.$serachAvailability['start_time'].'" data-end="'.$serachAvailability['end_time'].'" data-id="'.$serachAvailability['id'].'">'.$serachAvailability['start_time'].' - '.$serachAvailability['end_time'].'</a>';
+				}
+			}
+		$html .='</div>';
+		return $html;
 	}
 }

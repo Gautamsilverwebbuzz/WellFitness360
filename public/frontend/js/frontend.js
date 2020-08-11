@@ -233,4 +233,42 @@ $(document).ready(function() {
 			$(this).closest('.form-group').find('.form-control').attr("value",names);
 		}
 	});
+
+
+	$('#physique').validate({
+		rules: {
+			age:{
+				required:true,
+			},
+			height:{
+				required:true,
+			},
+			weight:{
+				required:true,				
+			},
+			level:{
+				required:true,
+			},
+			gender:{
+				required:true,
+			},
+		},
+		messages: {
+			age:{
+				required:"Please select age.",
+			},
+			height:{
+				required:"Please select height.",
+			},
+			weight:{
+				required:"Please select weight.",
+			},
+			level:{
+				required:"Please select level.",
+			},
+			gender:{
+				required:"Please select gender.",
+			},
+		},
+	});
 });

@@ -8,7 +8,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="text-center start-form">
-				<h2>Register Now!</h2>
+				<h2>Trainer Register Now!</h2>
 				<p class="p1">Unleash your Power</p>
 				<form action="{{ url('trainer/register') }}" id="trainerregister" name="trainerregister" class="needs-validation" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="_token"  id="csrf-token" value="{{ csrf_token() }}">

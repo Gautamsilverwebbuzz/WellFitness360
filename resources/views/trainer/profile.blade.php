@@ -124,7 +124,43 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select id="height" name="height" class="form-control">
 										<option value="">Select Height</option>
-											<option value="1">1</option>
+											<option value="" selected>Select Height</option>
+											<option value="4ft1inch" @if($trainerprofile['height'] == '4ft1inch') selected @endif>4'1</option>
+											<option value="4ft2inch" @if($trainerprofile['height'] == '4ft2inch') selected @endif>4'2</option>
+											<option value="4ft3inch" @if($trainerprofile['height'] == '4ft3inch') selected @endif>4'3</option>
+											<option value="4ft3inch" @if($trainerprofile['height'] == '4ft4inch') selected @endif>4'4</option>
+											<option value="4ft4inch" @if($trainerprofile['height'] == '4ft5inch') selected @endif>4'5</option>
+											<option value="4ft5inch" @if($trainerprofile['height'] == '4ft6inch') selected @endif>4'6</option>
+											<option value="4ft6inch" @if($trainerprofile['height'] == '4ft7inch') selected @endif>4'7</option>
+											<option value="4ft7inch" @if($trainerprofile['height'] == '4ft8inch') selected @endif>4'8</option>
+											<option value="4ft8inch" @if($trainerprofile['height'] == '4ft9inch') selected @endif>4'9</option>
+											<option value="4ft9inch" @if($trainerprofile['height'] == '4ft10inch') selected @endif>4'10</option>
+											<option value="4ft10inch" @if($trainerprofile['height'] == '4ft11inch') selected @endif>4'11</option>
+											<option value="4ft11inch" @if($trainerprofile['height'] == '4ft12inch') selected @endif>4'12</option>
+											<option value="5ft1inch" @if($trainerprofile['height'] == '5ft1inch') selected @endif>5'1</option>
+											<option value="5ft22inch" @if($trainerprofile['height'] == '5ft2inch') selected @endif>5'2</option>
+											<option value="5ft3inch" @if($trainerprofile['height'] == '5ft3inch') selected @endif>5'3</option>
+											<option value="5ft3inch" @if($trainerprofile['height'] == '5ft4inch') selected @endif>5'4</option>
+											<option value="5ft4inch" @if($trainerprofile['height'] == '5ft5inch') selected @endif>5'5</option>
+											<option value="5ft5inch" @if($trainerprofile['height'] == '5ft6inch') selected @endif>5'6</option>
+											<option value="5ft6inch" @if($trainerprofile['height'] == '5ft7inch') selected @endif>5'7</option>
+											<option value="5ft7inch" @if($trainerprofile['height'] == '5ft8inch') selected @endif>5'8</option>
+											<option value="5ft8inch" @if($trainerprofile['height'] == '5ft9inch') selected @endif>5'9</option>
+											<option value="5ft9inch" @if($trainerprofile['height'] == '5ft10inch') selected @endif>5'10</option>
+											<option value="5ft10inch" @if($trainerprofile['height'] == '5ft11inch') selected @endif>5'11</option>
+											<option value="5ft11inch" @if($trainerprofile['height'] == '5ft12inch') selected @endif>5'12</option>
+											<option value="6ft1inch" @if($trainerprofile['height'] == '6ft1inch') selected @endif>6'1</option>
+											<option value="6ft2inch" @if($trainerprofile['height'] == '6ft2inch') selected @endif>6'2</option>
+											<option value="6ft3inch" @if($trainerprofile['height'] == '6ft3inch') selected @endif>6'3</option>
+											<option value="6ft3inch" @if($trainerprofile['height'] == '6ft4inch') selected @endif>6'4</option>
+											<option value="6ft4inch" @if($trainerprofile['height'] == '6ft5inch') selected @endif>6'5</option>
+											<option value="6ft5inch" @if($trainerprofile['height'] == '6ft6inch') selected @endif>6'6</option>
+											<option value="6ft6inch" @if($trainerprofile['height'] == '6ft7inch') selected @endif>6'7</option>
+											<option value="6ft7inch" @if($trainerprofile['height'] == '6ft8inch') selected @endif>6'8</option>
+											<option value="6ft8inch" @if($trainerprofile['height'] == '6ft9inch') selected @endif>6'9</option>
+											<option value="6ft9inch" @if($trainerprofile['height'] == '6ft10inch') selected @endif>6'10</option>
+											<option value="6ft10inch" @if($trainerprofile['height'] == '6ft11inch') selected @endif>6'11</option>
+											<option value="6ft11inch" @if($trainerprofile['height'] == '6ft12inch') selected @endif>6'12</option>
 									</select>
 									<small class="text-danger">{{ $errors->first('height') }}</small>
 								</div>

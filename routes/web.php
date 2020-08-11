@@ -127,6 +127,7 @@ Route::match(['GET', 'POST'], 'user/register', 'Frontend\RegisterController@user
 Route::match(['GET', 'POST'], 'user/registerUser', 'Frontend\RegisterController@registerUser')->name('user/registerUser');
 Route::match(['GET', 'POST'], 'trainer/register', 'Frontend\RegisterController@trainerRegister')->name('trainer/register');
 Route::match(['GET', 'POST'], 'physique', 'Frontend\RegisterController@Physique')->name('physique');
+Route::match(['GET', 'POST'], 'emailverifysend', 'Frontend\RegisterController@emailverifysend')->name('emailverifysend');
 
 Route::get('logout', 'LoginController@logout')->name('logout');
 Route::match(['GET', 'POST'], 'login', 'LoginController@index');
@@ -150,6 +151,7 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	Route::get('trainer/availability/edit/{id}', 'AvailabilityController@edit');
 	Route::match(['GET', 'POST'], 'trainer/availability/store', 'AvailabilityController@store')->name('trainer/availability/store');
 	Route::match(['GET', 'POST'], 'trainer/availability/update', 'AvailabilityController@update')->name('trainer/availability/update');
+	Route::match(['GET', 'POST'], 'trainer/availability/serach-availability', 'AvailabilityController@serachAvailability')->name('trainer/availability/serach-availability');
 	Route::resource('trainer/availability', 'AvailabilityController');
 
 	// Route::get('trainer/availability', 'AvailabilityController@index');

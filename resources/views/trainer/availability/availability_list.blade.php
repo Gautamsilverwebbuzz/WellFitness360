@@ -43,10 +43,21 @@
 					</div>
 					<div class="x_content">
 						<div class="row">
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title"> Serach Date <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" id="serach_date" name="serach_date" value="{{ old('serach_date') }}" class="form-control col-md-7 col-xs-12" placeholder="Enter serach date" autocomplete="off">
+									<small class="text-danger">{{ $errors->first('serach_date') }}</small>
+								</div>
+							</div>
+						</div>
+						<div class="row trainer-avila-cls">
 							<div class="col-md-3">
 								<p>Gautam Patel</p>
 							</div>
-							<div class="col-md-9">
+							<div class="serach-availability-cls"></div> <!-- don't remove this class -->
+							<div class="col-md-9 trainer-avali-cls">
 								@if($trainerAvailabilitys)
 									@foreach($trainerAvailabilitys as $trainerAvailability)
 										<a href="javascript:void(0);" class="timeavailability-cls" data-start="{{ $trainerAvailability['start_time'] }}" data-end="{{ $trainerAvailability['end_time'] }}" data-id="{{ $trainerAvailability['id'] }}">{{ $trainerAvailability['start_time'] }} - {{ $trainerAvailability['end_time'] }}</a>
@@ -103,7 +114,15 @@
 				<form id="availabilityForm" name="availabilityForm" method="post" class="form-horizontal form-label-left">
 					<input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token() }} ">
 					<div class="form-group">
-						<label for="category" class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Date <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" id="date" name="date" value="{{ old('date') }}" class="form-control col-md-7 col-xs-12" placeholder="Enter date" autocomplete="off">
+							<small class="text-danger">{{ $errors->first('date') }}</small>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="category" class="control-label col-md-3 col-sm-3 col-xs-12">Category <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<select id="category" name="category" class="form-control">
 								<option value="">Select Categories</option>
@@ -113,34 +132,35 @@
 							</select>
 							<!-- <input type="text" name="category" value="{{ old('category') }}" id="category" class="form-control col-md-7 col-xs-12 category" placeholder="Enter Category" autocomplete="off"> -->
 							<small class="text-danger">{{ $errors->first('category') }}</small>
-						</div>Z
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="start_time" class="control-label col-md-3 col-sm-3 col-xs-12">Start Time</label>
+						<label for="start_time" class="control-label col-md-3 col-sm-3 col-xs-12">Start Time <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" name="start_time" value="{{ old('start_time') }}" id="start_time" class="form-control col-md-7 col-xs-12 start_time" placeholder="Enter start time" autocomplete="off">
 							<small class="text-danger">{{ $errors->first('start_time') }}</small>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="end_time" class="control-label col-md-3 col-sm-3 col-xs-12">End Time</label>
+						<label for="duration" class="control-label col-md-3 col-sm-3 col-xs-12">Duaration <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" name="end_time" value="{{ old('end_time') }}" id="end_time" class="form-control col-md-7 col-xs-12" placeholder="Enter end time" autocomplete="off">
-							<small class="text-danger">{{ $errors->first('end_time') }}</small>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="duration" class="control-label col-md-3 col-sm-3 col-xs-12">Duaration</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" name="duration" value="{{ old('duration') }}" id="duration" class="form-control col-md-7 col-xs-12 duration" placeholder="Enter Duaration" autocomplete="off">
+							<select id="duration" name="duration" class="form-control">
+								<option value="">Select Duration</option>
+								<option value="15">15 Min</option>
+								<option value="30">30 Min</option>
+								<option value="45">45 Min</option>
+								<option value="1">1 Hour</option>
+								
+							</select>
+							<!-- <input type="text" name="duration" value="{{ old('duration') }}" id="duration" class="form-control col-md-7 col-xs-12 duration" placeholder="Enter Duaration" autocomplete="off"> -->
 							<small class="text-danger">{{ $errors->first('duration') }}</small>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="Price" class="control-label col-md-3 col-sm-3 col-xs-12">Price</label>
+						<label for="price" class="control-label col-md-3 col-sm-3 col-xs-12">Price <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" name="Price" value="{{ old('Price') }}" id="Price" class="form-control col-md-7 col-xs-12 Price" placeholder="Enter Price" autocomplete="off">
-							<small class="text-danger">{{ $errors->first('Price') }}</small>
+							<input type="text" name="price" value="{{ old('price') }}" id="price" class="form-control col-md-7 col-xs-12" placeholder="Enter price" autocomplete="off">
+							<small class="text-danger">{{ $errors->first('price') }}</small>
 						</div>
 					</div>
 					<div class="ln_solid"></div>
@@ -150,6 +170,19 @@
 						</div>
 					</div>
 				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade assign-modal user-assign-model" id="action_availability" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 class="actoin-txt">Action</h3>
+				<p class="p-cls">Click to get your action</p>
+				<button type="button" class="btn btn-success edit-btn">Edit</button>
+				<button type="button" class="btn btn-danger delete-btn">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -166,11 +199,20 @@
 			</div>
 			<div class="modal-body">
 				<form id="editavailabilityForm" name="editavailabilityForm" method="post" class="form-horizontal form-label-left">
-					<input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token() }} ">
+					<input type="hidden" name="_token" id="csrf-tokens" value="{{ csrf_token() }} ">
+					<input type="hidden" name="avail_id" id="avail_id" value="">
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Date
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" id="edit_date" name="edit_date" value="" class="form-control col-md-7 col-xs-12" placeholder="Select date" autocomplete="off">
+							<small class="text-danger">{{ $errors->first('edit_date') }}</small>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="category" class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<select id="category" name="category" class="form-control">
+							<select id="edit_category" name="edit_category" class="form-control">
 								<option value="">Select Categories</option>
 								@foreach($trainer_categories as $val)
 									<option value="{{ $val[0]['trainer_cat_id'] }}">{{ $val[0]['trainer_cat_name'] }}</option>
@@ -183,15 +225,30 @@
 					<div class="form-group">
 						<label for="start_time" class="control-label col-md-3 col-sm-3 col-xs-12">Start Time</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" name="start_time" value="" id="edit_start_time" class="form-control col-md-7 col-xs-12 start_time" placeholder="Enter start time" autocomplete="off">
+							<input type="text" name="edit_start_time" value="" id="edit_start_time" class="form-control col-md-7 col-xs-12 start_time" placeholder="Enter start time" autocomplete="off">
 							<small class="text-danger">{{ $errors->first('start_time') }}</small>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="end_time" class="control-label col-md-3 col-sm-3 col-xs-12">End Time</label>
+						<label for="duration" class="control-label col-md-3 col-sm-3 col-xs-12">Duaration</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" name="end_time" value="" id="edit_end_time" class="form-control col-md-7 col-xs-12" placeholder="Enter end time" autocomplete="off">
-							<small class="text-danger">{{ $errors->first('end_time') }}</small>
+							<select id="edit_duration" name="edit_duration" class="form-control">
+								<option value="">Select Duration</option>
+								<option value="15">15 Min</option>
+								<option value="30">30 Min</option>
+								<option value="45">45 Min</option>
+								<option value="1">1 Hour</option>
+								
+							</select>
+							<!-- <input type="text" name="duration" value="{{ old('duration') }}" id="duration" class="form-control col-md-7 col-xs-12 duration" placeholder="Enter Duaration" autocomplete="off"> -->
+							<small class="text-danger">{{ $errors->first('duration') }}</small>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="price" class="control-label col-md-3 col-sm-3 col-xs-12">Price</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" name="edit_price" value="{{ old('edit_price') }}" id="edit_price" class="form-control col-md-7 col-xs-12" placeholder="Enter price" autocomplete="off">
+							<small class="text-danger">{{ $errors->first('edit_price') }}</small>
 						</div>
 					</div>
 					<div class="ln_solid"></div>

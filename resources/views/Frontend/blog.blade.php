@@ -62,7 +62,7 @@
 						<a href="javascript:void(0);">{{ $value['tag'] }}</a>
 						<h4>{{ $value['title'] }}</h4>
 
-						{{ \Illuminate\Support\Str::limit($value['description'], 150, $end='...') }}
+						{!! \Illuminate\Support\Str::limit($value['description'], 150, $end='...') !!}
 					</div>
 				</div>
 			</div>

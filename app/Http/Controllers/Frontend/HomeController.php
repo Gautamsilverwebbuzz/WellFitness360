@@ -22,7 +22,8 @@ class HomeController extends Controller
 
 	public function blogDetails($id){
 		$blogsdetails = Blog::where('url_alias',$id)->first()->toArray();
-		return view('Frontend.blogdetails',compact('blogsdetails'));
+		$blogs = Blog::where('status','1')->limit('3')->get()->toArray();
+		return view('Frontend.blogdetails',compact('blogsdetails','blogs'));
 	}
 }
 

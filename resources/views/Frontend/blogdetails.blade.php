@@ -49,42 +49,22 @@
 <div class="wf-blog-detail-box">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="blog-section">
-					<div class="blog-img-sec">
-						<a href="blog-detail.html"><img src="{{ asset('frontend/images/blog1.jpg') }}" alt="img"></a>
-					</div>
-					<div class="blog-detail-sec">
-						<a href="#">BLOG TAG</a>
-						<h4>Take programs tailored to</h4>
-						<p>Take a workout of 10, 30 or 60 minutes anywhere.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blog-section">
-					<div class="blog-img-sec">
-						<a href="blog-detail.html"><img src="{{ asset('frontend/images/blog2.jpg') }}" alt="img"></a>
-					</div>
-					<div class="blog-detail-sec">
-						<a href="#">BLOG TAG</a>
-						<h4>Take programs tailored to</h4>
-						<p>Take a workout of 10, 30 or 60 minutes anywhere.</p>
+			@if($blogs)
+			@foreach($blogs as $value)
+				<div class="col-md-4">
+					<div class="blog-section">
+						<div class="blog-img-sec">
+							<a href="{{ url('blog-details',$value['url_alias']) }}"><img src="{{ $value['blogimage'] }}" alt="img"></a>
+						</div>
+						<div class="blog-detail-sec">
+							<a href="javascript:void(0);">{{ $value['tag'] }}</a>
+							<h4>{{ $value['title'] }}</h4>
+							{!! \Illuminate\Support\Str::limit($value['description'], 150, $end='...') !!}
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blog-section">
-					<div class="blog-img-sec">
-						<a href="blog-detail.html"><img src="{{ asset('frontend/images/blog1.jpg') }}" alt="img"></a>
-					</div>
-					<div class="blog-detail-sec">
-						<a href="#">BLOG TAG</a>
-						<h4>Take programs tailored to</h4>
-						<p>Take a workout of 10, 30 or 60 minutes anywhere.</p>
-					</div>
-				</div>
-			</div>
+			@endforeach
+			@endif
 		</div>
 	</div>
 </div>

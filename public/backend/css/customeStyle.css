@@ -55,7 +55,23 @@ div.ms-options ul{
     vertical-align: baseline;
     border-radius: .25em;
     background-color: #26b99a;
+    margin: 0px 10px 0px 0px;
 }
 .ui-timepicker-standard{
     z-index: 99999 !important;
+}
+.actoin-txt{
+    text-align: center;
+    font-weight: 500;
+    color: black;
+}
+.p-cls{
+    text-align: center;
+    font-size: 16px;
+}
+.edit-btn{
+	margin: 0px 30px 5px 220px;
+}
+.trainer-avila-cls{
+	margin: 30px 0px 0px 0px;
 }
