@@ -75,6 +75,7 @@ $(document).ready(function() {
 					type : 'POST',
 					data : {
 						"serachdate" : date,
+						"user_id" : $("#serach_date").data('id'),
 						'_token': $('meta[name="csrf-token"]').attr('content'),
 					},
 					success : function(response) {

@@ -47,14 +47,14 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title"> Serach Date <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" id="serach_date" name="serach_date" value="{{ old('serach_date') }}" class="form-control col-md-7 col-xs-12" placeholder="Enter serach date" autocomplete="off">
+									<input type="text" id="serach_date" name="serach_date" value="{{ old('serach_date') }}" class="form-control col-md-7 col-xs-12" placeholder="Enter serach date" autocomplete="off" data-id="{{ Session::get('user')['user_id'] }}>
 									<small class="text-danger">{{ $errors->first('serach_date') }}</small>
 								</div>
 							</div>
 						</div>
 						<div class="row trainer-avila-cls">
 							<div class="col-md-3">
-								<p>Gautam Patel</p>
+								<p>{{ (Session::get('user')['name']) ? (Session::get('user')['name']).' '.(Session::get('user')['surname']) : '' }}</p>
 							</div>
 							<div class="serach-availability-cls"></div> <!-- don't remove this class -->
 							<div class="col-md-9 trainer-avali-cls">

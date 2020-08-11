@@ -188,7 +188,8 @@ class AvailabilityController extends Controller
 
 	public function serachAvailability(Request $request){
 		$serachdate = date('Y-m-d',strtotime($request->serachdate));
-		$serachAvailabilitys = TrainerAvailability::where('date',$serachdate)->get()->toArray();
+		$user_id = $request->user_id;
+		$serachAvailabilitys = TrainerAvailability::where('trainer_id',$user_id)->where('date',$serachdate)->get()->toArray();
 		$html = '';
 		$html .='<div class="col-md-9">';
 			if($serachAvailabilitys){

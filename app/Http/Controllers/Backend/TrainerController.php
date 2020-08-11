@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use Illuminate\Support\Facades\Session;
 use App\Http\Models\TrainerCategories;
+use App\Http\Models\frontend\TrainerAvailability;
 
 class TrainerController extends Controller
 {
@@ -92,13 +93,14 @@ class TrainerController extends Controller
 	{
 		$trainer_view = User::find($id)->toArray();
 		$skils = json_decode($trainer_view['trainer_skils']);
+		$trainerAvailabilitys = TrainerAvailability::where('trainer_id',$id)->where('date',date('Y-m-d'))->get()->toArray();
 		$trainer_categories = array();
 		if(!empty($skils)){
 			foreach($skils as $val){
 				$trainer_categories[] = TrainerCategories::where('trainer_cat_id',$val)->get()->toArray();
 			}
 		}
-		return view('backend.TrainerManagement.trainer_view',compact('trainer_view','trainer_categories'));
+		return view('backend.TrainerManagement.trainer_view',compact('trainer_view','trainer_categories','trainerAvailabilitys'));
 	}
 
 	/**

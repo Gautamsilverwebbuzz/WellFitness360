@@ -38,6 +38,26 @@ $(document).ready(function () {
 			placeholder: 'Select Trainer',
 		});
 	}
+	if($('#serach_date').length){
+		$("#serach_date").datepicker({
+			onSelect: function(date, instance) {
+				$("#cover-spin").show();
+				$.ajax({
+					url  : BASE_URL+'/trainer/availability/serach-availability',
+					type : 'POST',
+					data : {
+						"serachdate" : date,
+						"user_id" : $("#serach_date").data('id'),
+						'_token': $('meta[name="csrf-token"]').attr('content'),
+					},
+					success : function(response) {
+						$('.serach-availability-cls').html(response);
+						$(".trainer-avali-cls").hide();
+					}
+				});
+			}
+		});
+	}
 	/** USE : Delete Modules */
 	$(document).on("click",".deletModule",function() {
 		$("#cover-spin").css("display", "block");

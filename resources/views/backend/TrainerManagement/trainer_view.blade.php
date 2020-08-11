@@ -21,7 +21,13 @@
 							<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 								<div class="profile_img">
 									<div id="crop-avatar">
-										<img class="img-responsive avatar-view" src="{{ asset('backend/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+										@if($trainer_view['profile_image'])
+											<img class="img-responsive avatar-view" src="{{ asset($trainer_view['profile_image']) }}" alt="Avatar" title="Change the avatar">
+										@elseif($trainer_view['social_profile_image'])
+											<img class="img-responsive avatar-view" src="{{ asset( $trainer_view['social_profile_image']) }}" alt="Avatar" title="Change the avatar">
+										@else
+											<img class="img-responsive avatar-view" src="{{ asset('profile/no_images.jpg') }}" alt="Avatar" title="Change the avatar">
+										@endif
 									</div>
 								</div>
 								<h3>{{ ucfirst($trainer_view['name']) }} {{ ucfirst($trainer_view['sur_name']) }}</h3>
@@ -40,16 +46,23 @@
 										<h2>Trainer Availability</h2>
 									</div>
 								</div>
-								<div class="container">
-									<h4>15-07-2020</h4>
-									<div class="col">
-										<h5>02:00 - 03:00</h5>
+								<div class="container trainer_avali-clss">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-3 col-sm-6 col-xs-12">
+												<input type="text" id="serach_date" name="serach_date" value="{{ old('serach_date') }}" class="form-control col-md-7 col-xs-12 serach-availbilty-cls" placeholder="Serach Availability" autocomplete="off" data-id="{{ $trainer_view['id'] }}">
+											</div>
+										</div>
 									</div>
-									<div class="col">
-										<h5>05:00 - 05:00</h5>
-									</div>
-									<div class="col">
-										<h5>07:00 - 08:00</h5>
+									<div class="row trainer-avila-cls">
+										<div class="serach-availability-cls"></div> <!-- don't remove this class -->
+										<div class="col-md-9 trainer-avali-cls">
+											@if($trainerAvailabilitys)
+												@foreach($trainerAvailabilitys as $trainerAvailability)
+													<a href="javascript:void(0);" class="timeavailability-cls">{{ $trainerAvailability['start_time'] }} - {{ $trainerAvailability['end_time'] }}</a>
+												@endforeach
+											@endif
+										</div>
 									</div>
 								</div>
 								<div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -63,16 +76,13 @@
 									</ul>
 									<div id="myTabContent" class="tab-content">
 										<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-											<p>Proin quis posuere ex. Vestibulum tempus imperdiet sapien, id mollis lorem posuere nien.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamusut tortor arcu.
-											</p>
+											{!! $trainer_view['biography'] !!}
 										</div>
 										<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-											<p>Proin quis posuere ex. Vestibulum tempus imperdiet sapien, id mollis lorem posuere nien.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamusut tortor arcu.
-											</p>
+											{!! $trainer_view['goals'] !!}
 										</div>
 										<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-											<p>Proin quis posuere ex. Vestibulum tempus imperdiet sapien, id mollis lorem posuere nien.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamusut tortor arcu.
-											</p>
+											{!! $trainer_view['experience'] !!}
 										</div>
 									</div>
 								</div>
