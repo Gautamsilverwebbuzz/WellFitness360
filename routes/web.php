@@ -108,7 +108,7 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 
 	// Site Setting
 	Route::get('admin/setting', 'SettingController@siteSetting')->name('admin/setting');
-	Route::put('admin/setting/update', 'SettingController@update')->name('admin/settingUpdate');
+	Route::put('admin/settings/update', 'SettingController@update')->name('admin/settings/update');
 
 	// E-shop Management
 	Route::get('admin/E_shopManagement/delete/{id}', 'EshopController@destroy');
@@ -153,14 +153,6 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	Route::match(['GET', 'POST'], 'trainer/availability/update', 'AvailabilityController@update')->name('trainer/availability/update');
 	Route::match(['GET', 'POST'], 'trainer/availability/serach-availability', 'AvailabilityController@serachAvailability')->name('trainer/availability/serach-availability');
 	Route::resource('trainer/availability', 'AvailabilityController');
-
-	// Route::get('trainer/availability', 'AvailabilityController@index');
-	// Route::get('trainer/availability/create', 'AvailabilityController@create');
-	// Route::match(['GET', 'POST'], 'trainer/availability/store', 'AvailabilityController@store')->name('trainer/store');
-	// Route::get('trainer/availability/edit/{id}/', 'AvailabilityController@edit');
-	// Route::put('trainer/availability/update/{$id}', 'AvailabilityController@update')->name('trainer/availability/update/{$id}');
-	// Route::get('trainer/availabilit/delete/{id}', 'AvailabilityController@destroy');
-
 	/*Trainer END*/
 
 	/*Traine Chat START*/
@@ -173,4 +165,3 @@ Route::group(['middleware' => 'login','namespace' => 'Frontend','namespace' => '
 	/*Traine Chat END*/
 
 });
-/* Front Route END*/

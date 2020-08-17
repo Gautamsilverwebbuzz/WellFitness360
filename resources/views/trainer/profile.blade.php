@@ -123,7 +123,6 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Height</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select id="height" name="height" class="form-control">
-										<option value="">Select Height</option>
 											<option value="" selected>Select Height</option>
 											<option value="4ft1inch" @if($trainerprofile['height'] == '4ft1inch') selected @endif>4'1</option>
 											<option value="4ft2inch" @if($trainerprofile['height'] == '4ft2inch') selected @endif>4'2</option>

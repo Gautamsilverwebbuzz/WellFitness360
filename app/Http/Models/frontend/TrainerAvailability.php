@@ -10,4 +10,10 @@ class TrainerAvailability extends Model
 	use SoftDeletes;
     protected $table = 'trainer_availability';
     protected $primaryKey = 'id';
+
+
+    public function users()
+    {
+        return $this->belongsTo('App\User', 'id','trainer_id');
+    }
 }

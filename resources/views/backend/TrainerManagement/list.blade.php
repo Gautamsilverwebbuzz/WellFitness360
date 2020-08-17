@@ -74,7 +74,7 @@
 												<i class="fa fa-trash"></i> Delete
 												</a>
 												@if($trainer['tranier_approved'] == 0)
-													<a href="{{ url('trainerManagement/apporved',$trainer['id']) }}"><i class="fa fa-check" aria-hidden="true"></i> Approved</a>
+													<a href="{{ url('admin/trainerManagement/apporved',$trainer['id']) }}"><i class="fa fa-check" aria-hidden="true"></i> Approved</a>
 												@endif
 											</td>
 										</tr>

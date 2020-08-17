@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Http\Models\FeesManagement', 'TrainerID','id');
     }
+
+    public function TrainerAvailability()
+    {
+        return $this->hasMany('App\Http\Models\frontend\TrainerAvailability', 'trainer_id','id');
+    }
 }

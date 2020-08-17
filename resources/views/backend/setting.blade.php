@@ -32,10 +32,9 @@
 					  @endif
 					<div class="x_content">
 						<br />
-					<form id="settingForm" action="{{ url('/setting/update')}}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
+					<form id="settingForm" name="id="settingForm"" action="{{ url('admin/settings/update') }}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
 							<input type="hidden" name="_token" value="{{ csrf_token() }} ">
 							 {{ method_field('PUT') }}
-							<div class="form-group">
 							<div class="form-group">
 								<label for="email" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">

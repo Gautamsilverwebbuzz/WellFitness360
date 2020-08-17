@@ -173,8 +173,7 @@ class AvailabilityController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($id){
 		$TrainerAvailability = TrainerAvailability::find($id)->delete();
 		if($TrainerAvailability){
 			$message = 'Availability deleted successfully..';

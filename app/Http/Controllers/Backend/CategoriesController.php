@@ -134,8 +134,8 @@ class CategoriesController extends Controller
 		$updateCategories->cat_Name = $request->categories_name;
 		$updateCategories->cat_description = $request->categories_desc;
 		if(isset($request->categories_image) && !empty($fullImagePath)){
-            $updateCategories->cat_image        = $fullImagePath;
-        }
+			$updateCategories->cat_image        = $fullImagePath;
+		}
 		$updateCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $updateCategories->save();
 		if($result){
@@ -154,13 +154,13 @@ class CategoriesController extends Controller
 	public function destroy($id)
 	{
 		$Categories = Categories::find($id)->delete();
-        if($Categories){
-            $message = 'Categories deleted successfully..';
-            $status = true;
-        }else{
-            $message = 'Please try again';
-            $status = false;
-        }
-        return response()->json(['status' => $status,'message' => $message]);
+		if($Categories){
+			$message = 'Categories deleted successfully..';
+			$status = true;
+		}else{
+			$message = 'Please try again';
+			$status = false;
+		}
+		return response()->json(['status' => $status,'message' => $message]);
 	}
 }

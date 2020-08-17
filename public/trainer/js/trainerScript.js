@@ -406,7 +406,7 @@ $(document).ready(function() {
 		$('.chat_list').removeClass('active_chat');
 		$(this).addClass('active_chat');
 		var fromUserId = $(this).attr('id');
-
+		const messages = document.getElementById('msg_history');
 		$.ajax({
 			type:'POST',
 			url: BASE_URL+'/trainer/updateCountMessage',

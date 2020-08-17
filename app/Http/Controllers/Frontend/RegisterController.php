@@ -135,7 +135,7 @@ class RegisterController extends Controller
 						'verifyToken' => $remember_token,
 					);
 					// Send email
-                    $sendMail = Helper::sendMail($data,'email.sendCredential');
+					$sendMail = Helper::sendMail($data,'email.sendCredential');
 					Session::flush();
 					return Redirect('emailverifysend');
 				}else{

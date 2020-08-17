@@ -236,7 +236,7 @@ class LoginController extends Controller
 
 			if($request->isMethod('post')) {
 				$userData = Helper::getUserData(Auth::user()->id);
-				if(Hash::check($request->old_password,$userData->password)){
+				if(Hash::check($request->old_password,$userData[0]['password'])){
 					if($request->new_password == $request->confirm_password){
 						$user = User::find(Auth::user()->id);
 						$user->password  =  bcrypt($request->new_password);

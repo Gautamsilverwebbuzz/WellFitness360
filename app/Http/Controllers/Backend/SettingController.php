@@ -77,7 +77,7 @@ class SettingController extends Controller {
 		$result = $Setting->save();  // save data
 
 		if($result){
-			return redirect('setting')->with('success_msg', 'Setting Update successfully.');
+			return redirect('admin/setting')->with('success_msg', 'Setting Update successfully.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
